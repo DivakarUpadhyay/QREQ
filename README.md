@@ -5,6 +5,13 @@
 
 <img width="1910" height="902" alt="image" src="https://github.com/user-attachments/assets/178e30dd-4702-466c-9391-93ff9a3e5ca0" />
 
+https://codegenapp.vercel.app/
+https://factoryos-alpha.vercel.app/login
+https://divakar-racktest-demo.pages.dev/login.html
+https://github.com/DivakarUpadhyay/QREQ/wiki
+
+
+
 # Data Center Solution
 
 A Clean Architecture example for managing data-center servers, tests, firmware, and racks. The tree below shows the complete proposed structure; the code samples that follow are illustrative starting points, not a claim that these files already exist in the repository.
