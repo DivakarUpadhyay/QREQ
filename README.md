@@ -1,14 +1,13 @@
 <img width="546" height="546" alt="image" src="https://github.com/user-attachments/assets/863d3708-77a3-42a1-a355-eedb1ee22b66" />
 
-
 <img width="602" height="314" alt="image" src="https://github.com/user-attachments/assets/4cb57618-b4f3-4037-b665-86ea981229d9" />
 
+# Project Structure
+
+```text
 DataCenterSolution/
-│
 ├── DataCenterSolution.sln
-│
 ├── src/
-│   │
 │   ├── DataCenter.API/
 │   │   ├── Controllers/
 │   │   │   ├── ServersController.cs
@@ -64,7 +63,6 @@ DataCenterSolution/
 └── tests/
     ├── DataCenter.UnitTests/
     └── DataCenter.IntegrationTests/
+```
 
-
-
-
+This keeps the project structure clean and easy to read.
