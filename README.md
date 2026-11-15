@@ -66,6 +66,40 @@ DataCenterSolution/
 ```
 namespace DataCenter.Domain.Entities;
 
+```
+public record CreateServerCommand(
+    string SerialNumber,
+    string Model,
+    string BmcIpAddress
+);
+```
+
+```
+public class CreateServerHandler
+{
+    private readonly IServerRepository _repository;
+
+    public CreateServerHandler(
+        IServerRepository repository)
+    {
+        _repository = repository;
+    }
+
+    public async Task<int> HandleAsync(
+        CreateServerCommand command,
+        CancellationToken ct)
+    {
+        var server = new Server
+        {
+            SerialNumber = command.SerialNumber,
+            Model = command.Model,
+            BmcIpAddress = command.BmcIpAddress
+        };
+
+        return await _repository.AddAsync(server, ct);
+    }
+}
+```
 
 ```
 public class Server
@@ -708,5 +742,8 @@ public static class DependencyInjection
 ```
 
 ### `tests/DataCenter.UnitTests/` and `tests/DataCenter.IntegrationTests/`
+
+<img width="527" height="264" alt="image" src="https://github.com/user-attachments/assets/a1848b9f-7e08-442b-bbd4-13f0d3ecc716" />
+
 
 These are project folders, not individual files in the supplied tree. Add test project files (`.csproj`) and test classes. Unit tests should cover domain rules and Application handlers with mocked interfaces; integration tests should exercise API and persistence behavior against test configuration.
