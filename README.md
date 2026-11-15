@@ -2,6 +2,9 @@
 
 <img width="602" height="314" alt="image" src="https://github.com/user-attachments/assets/4cb57618-b4f3-4037-b665-86ea981229d9" />
 
+<img width="602" height="314" alt="image" src="https://github.com/user-attachments/assets/4cb57618-b4f3-4037-b665-86ea981229d9](https://us1.discourse-cdn.com/flex023/uploads/cardano/original/3X/9/9/9955f1d08d7faee3417cba9ccd07287bd44ebd2e.jpeg" />
+
+
 # Data Center Solution
 
 A Clean Architecture example for managing data-center servers, tests, firmware, and racks. The tree below shows the complete proposed structure; the code samples that follow are illustrative starting points, not a claim that these files already exist in the repository.
