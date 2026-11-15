@@ -67,6 +67,7 @@ DataCenterSolution/
 namespace DataCenter.Domain.Entities;
 
 
+```
 public class Server
 {
     public int Id { get; set; }
@@ -74,6 +75,7 @@ public class Server
     public string Model { get; set; } = "";
     public string BmcIpAddress { get; set; } = "";
 }
+```
 
 public interface IRedfishService
 {
