@@ -66,6 +66,7 @@ DataCenterSolution/
 ```
 namespace DataCenter.Domain.Entities;
 
+
 public class Server
 {
     public int Id { get; set; }
