@@ -2,8 +2,8 @@
 
 <img width="602" height="314" alt="image" src="https://github.com/user-attachments/assets/4cb57618-b4f3-4037-b665-86ea981229d9" />
 
-<img width="602" height="314" alt="image" src="https://github.com/user-attachments/assets/4cb57618-b4f3-4037-b665-86ea981229d9](https://us1.discourse-cdn.com/flex023/uploads/cardano/original/3X/9/9/9955f1d08d7faee3417cba9ccd07287bd44ebd2e.jpeg" />
 
+<img width="1910" height="902" alt="image" src="https://github.com/user-attachments/assets/178e30dd-4702-466c-9391-93ff9a3e5ca0" />
 
 # Data Center Solution
 
