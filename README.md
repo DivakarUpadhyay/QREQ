@@ -7,6 +7,7 @@
 ```text
 DataCenterSolution/
 ├── DataCenterSolution.sln
+│
 ├── src/
 │   ├── DataCenter.API/
 │   │   ├── Controllers/
@@ -57,12 +58,11 @@ DataCenterSolution/
 │       │       └── TestRepository.cs
 │       ├── ExternalServices/
 │       │   ├── RedfishService.cs
-│       │   └── MesService.cs
+│       │   │   └── MesService.cs
+│       │
 │       └── DependencyInjection.cs
 │
 └── tests/
     ├── DataCenter.UnitTests/
     └── DataCenter.IntegrationTests/
 ```
-
-This keeps the project structure clean and easy to read.
