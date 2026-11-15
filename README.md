@@ -9,7 +9,7 @@ https://codegenapp.vercel.app/
 https://factoryos-alpha.vercel.app/login
 https://divakar-racktest-demo.pages.dev/login.html
 https://github.com/DivakarUpadhyay/QREQ/wiki
-
+https://github.com/DivakarUpadhyay/QREQ/blob/master/README.md
 
 
 # Data Center Solution
