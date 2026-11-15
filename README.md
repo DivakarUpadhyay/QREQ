@@ -64,6 +64,99 @@ DataCenterSolution/
     ├── DataCenter.UnitTests/
     └── DataCenter.IntegrationTests/
 ```
+namespace DataCenter.Domain.Entities;
+
+public class Server
+{
+    public int Id { get; set; }
+    public string SerialNumber { get; set; } = "";
+    public string Model { get; set; } = "";
+    public string BmcIpAddress { get; set; } = "";
+}
+
+public interface IRedfishService
+{
+    Task<ServerHealthDto> GetHealthAsync(
+        string serverId,
+        CancellationToken ct);
+}
+
+public record ServerHealthDto(
+    string PowerState,
+    string Health);
+
+    public class StartServerTest
+{
+    private readonly IRedfishService _redfish;
+
+    public StartServerTest(IRedfishService redfish)
+    {
+        _redfish = redfish;
+    }
+
+    public async Task<ServerHealthDto> ExecuteAsync(
+        string serverId,
+        CancellationToken ct)
+    {
+        return await _redfish.GetHealthAsync(
+            serverId, ct);
+    }
+}
+
+using System.Net.Http.Json;
+
+public class RedfishService : IRedfishService
+{
+    private readonly HttpClient _client;
+
+    public RedfishService(HttpClient client)
+    {
+        _client = client;
+    }
+
+    public async Task<ServerHealthDto> GetHealthAsync(
+        string serverId,
+        CancellationToken ct)
+    {
+        var result = await _client.GetFromJsonAsync<
+            RedfishResponse>(
+            $"/redfish/v1/Systems/{serverId}", ct);
+
+        return new ServerHealthDto(
+            result?.PowerState ?? "Unknown",
+            result?.Status?.Health ?? "Unknown");
+    }
+}
+
+public record RedfishResponse(
+    string PowerState,
+    RedfishStatus Status);
+
+public record RedfishStatus(string Health);
+
+[ApiController]
+[Route("api/server-tests")]
+public class ServerTestsController : ControllerBase
+{
+    private readonly StartServerTest _service;
+
+    public ServerTestsController(
+        StartServerTest service)
+    {
+        _service = service;
+    }
+
+    [HttpGet("{serverId}/health")]
+    public async Task<IActionResult> GetHealth(
+        string serverId,
+        CancellationToken ct)
+    {
+        var result = await _service.ExecuteAsync(
+            serverId, ct);
+
+        return Ok(result);
+    }
+}
 
 ## Example file contents
 
