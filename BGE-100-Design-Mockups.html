@@ -1,0 +1,1358 @@
+<title>BGE-100 Screen Mockups</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    background: #EDEFF5;
+    color: #1A1B23;
+    font-family: "Segoe UI", -apple-system, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .mono { font-family: Consolas, "Cascadia Mono", "SFMono-Regular", Menlo, monospace; }
+
+  /* ===== deck chrome ===== */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 64px;
+    background: #171A2B;
+    color: #F3F1FA;
+    page-break-after: always;
+  }
+  .cover .eyebrow { font-family: Consolas, monospace; font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; color: #8FE3DC; font-weight: 700; }
+  .cover h1 { font-size: 46px; font-weight: 700; margin: 14px 0 10px; letter-spacing: -0.01em; max-width: 16ch; }
+  .cover p.sub { font-size: 17px; color: #C3C2D6; max-width: 58ch; margin: 0 0 30px; }
+  .cover .badges { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 46px; }
+  .cover .badge { font-family: Consolas, monospace; font-size: 12px; font-weight: 700; padding: 6px 13px; border-radius: 999px; border: 1px solid #3A3D57; color: #C3C2D6; }
+  .cover .badge.b1 { background: #14312F; color: #7FE1D8; border-color: #1D4B47; }
+  .cover .badge.b2 { background: #241A46; color: #B9A6F5; border-color: #362A5E; }
+  .cover .legend-row { display: flex; gap: 28px; font-size: 13px; color: #9C9BB3; }
+  .cover .legend-row .sw { display: inline-flex; align-items: center; gap: 8px; }
+  .cover .legend-row .dot { width: 10px; height: 10px; border-radius: 999px; }
+
+  .toc-page { padding: 50px 64px 60px; page-break-after: always; background: #F6F7FB; }
+  .toc-page h2 { font-size: 26px; margin: 0 0 6px; }
+  .toc-page p.desc { color: #5B5E6E; margin: 0 0 30px; max-width: 70ch; }
+  .toc-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .toc-group-h { display: flex; align-items: center; gap: 8px; margin: 0 0 14px; font-weight: 700; font-size: 15px; }
+  .toc-group-h .sw { width: 10px; height: 10px; border-radius: 999px; }
+  .toc-item { display: flex; align-items: baseline; gap: 10px; padding: 8px 0; border-bottom: 1px solid #E3E5EE; font-size: 13.5px; }
+  .toc-item .num { font-family: Consolas, monospace; color: #9C9BB3; font-size: 11px; min-width: 26px; }
+  .toc-item .t { color: #1A1B23; font-weight: 600; }
+
+  .screen-page { padding: 10mm 12mm 8mm; page-break-after: always; background: #EDEFF5; }
+  .screen-page:last-child { page-break-after: auto; }
+  .screen-label { display: flex; align-items: center; gap: 9px; margin-bottom: 8px; }
+  .screen-label .sw { width: 9px; height: 9px; border-radius: 999px; }
+  .screen-label .txt { font-family: Consolas, monospace; font-size: 11.5px; letter-spacing: 0.04em; color: #5B5E6E; text-transform: uppercase; font-weight: 700; }
+  .screen-label .txt b { color: #1A1B23; }
+
+  .app-frame { background: #fff; border-radius: 12px; box-shadow: 0 6px 24px rgba(23,26,43,0.16); overflow: hidden; border: 1px solid #DCDEE8; }
+  .frame-bar { display: flex; align-items: center; gap: 10px; padding: 9px 14px; background: #E7E8F0; border-bottom: 1px solid #DCDEE8; }
+  .frame-bar .tld { width: 9px; height: 9px; border-radius: 999px; background: #DADCE6; }
+  .frame-url { flex: 1; background: #fff; border: 1px solid #DCDEE8; border-radius: 6px; padding: 4px 10px; font-family: Consolas, monospace; font-size: 11px; color: #6B6E7C; }
+  .frame-body { height: 700px; display: flex; overflow: hidden; }
+
+  /* ===== client shell ===== */
+  .client-shell { display: flex; flex-direction: column; width: 100%; background: #F5FBFA; }
+  .client-top { display: flex; align-items: center; justify-content: space-between; padding: 14px 28px; background: #fff; border-bottom: 1px solid #DCEEEC; }
+  .client-logo { display: flex; align-items: center; gap: 10px; }
+  .client-logo .mark { width: 28px; height: 28px; border-radius: 8px; background: #0EA5A0; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 13px; }
+  .client-logo .name { font-weight: 700; font-size: 14.5px; }
+  .client-logo .name span { color: #6B6E7C; font-weight: 500; font-size: 11.5px; display: block; margin-top: 1px; }
+  .client-user { display: flex; align-items: center; gap: 10px; font-size: 12.5px; color: #5B5E6E; }
+  .client-user .av { width: 26px; height: 26px; border-radius: 999px; background: #CDEFEC; color: #0B6E6A; font-weight: 700; font-size: 11px; display: flex; align-items: center; justify-content: center; }
+  .step-chip { font-family: Consolas, monospace; font-size: 11.5px; font-weight: 700; color: #0B6E6A; background: #E3F7F5; padding: 4px 10px; border-radius: 999px; }
+
+  .stepper { display: flex; align-items: center; padding: 14px 28px 0; gap: 6px; }
+  .stepper .seg { flex: 1; height: 5px; border-radius: 999px; background: #DCEEEC; }
+  .stepper .seg.done { background: #0EA5A0; }
+  .stepper .seg.now { background: linear-gradient(90deg,#0EA5A0 50%,#DCEEEC 50%); }
+
+  .client-main { flex: 1; overflow: hidden; padding: 20px 28px 24px; display: flex; justify-content: center; }
+  .client-card { width: 100%; max-width: 760px; }
+  .client-card .kicker { font-family: Consolas, monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #0EA5A0; }
+  .client-card h2 { font-size: 20px; margin: 5px 0 4px; }
+  .client-card p.hint { color: #5B5E6E; font-size: 13px; margin: 0 0 18px; }
+
+  .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 18px; }
+  .field { display: flex; flex-direction: column; gap: 5px; }
+  .field.wide { grid-column: 1 / -1; }
+  .field label { font-size: 12px; font-weight: 700; color: #33364A; }
+  .field label .req { color: #DC4B39; }
+  .ipt { font-family: inherit; font-size: 13px; padding: 9px 11px; border-radius: 8px; border: 1px solid #D7DAE4; background: #fff; color: #1A1B23; }
+  textarea.ipt { resize: none; font-family: inherit; }
+  .choice-pills { display: flex; flex-wrap: wrap; gap: 7px; }
+  .pill-choice { font-size: 12px; padding: 6px 12px; border-radius: 999px; border: 1px solid #D7DAE4; color: #4A4D5E; background: #fff; }
+  .pill-choice.active { background: #0EA5A0; border-color: #0EA5A0; color: #fff; font-weight: 700; }
+  .pill-choice.active.a-admin { background: #4F3CC9; border-color: #4F3CC9; }
+  .rating-row { display: flex; gap: 5px; }
+  .rating-btn { width: 27px; height: 27px; border-radius: 7px; border: 1px solid #D7DAE4; background: #fff; font-size: 11.5px; font-weight: 700; color: #6B6E7C; display: flex; align-items: center; justify-content: center; font-family: Consolas, monospace; }
+  .rating-btn.active { background: #1A1B23; border-color: #1A1B23; color: #fff; }
+
+  .client-actions { display: flex; justify-content: space-between; align-items: center; margin-top: 22px; }
+  .btn { font-family: inherit; font-size: 12.5px; font-weight: 700; padding: 9px 18px; border-radius: 8px; border: 1px solid transparent; cursor: default; }
+  .btn-primary { background: #0EA5A0; color: #fff; }
+  .btn-primary.a-admin { background: #4F3CC9; }
+  .btn-ghost { background: transparent; color: #5B5E6E; border-color: #D7DAE4; }
+  .btn-outline { background: #fff; color: #33364A; border-color: #D7DAE4; }
+
+  .save-note { font-size: 11px; color: #8B8E9C; }
+
+  /* ===== admin shell ===== */
+  .admin-shell { display: flex; width: 100%; }
+  .admin-sidebar { width: 208px; background: #171A2B; color: #C3C2D6; display: flex; flex-direction: column; padding: 18px 14px; flex-shrink: 0; }
+  .admin-brand { display: flex; align-items: center; gap: 9px; padding: 0 6px 18px; }
+  .admin-brand .mark { width: 26px; height: 26px; border-radius: 7px; background: #4F3CC9; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 12px; }
+  .admin-brand .name { font-weight: 700; font-size: 13.5px; color: #fff; }
+  .nav-label { font-family: Consolas, monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #565A72; margin: 14px 8px 6px; }
+  .nav-item { display: flex; align-items: center; gap: 9px; padding: 8px 10px; border-radius: 7px; font-size: 12.5px; font-weight: 600; color: #B4B3C8; margin-bottom: 2px; }
+  .nav-item .ic { width: 15px; height: 15px; border-radius: 4px; background: #333653; flex-shrink: 0; }
+  .nav-item.active { background: #2A2C4A; color: #fff; }
+  .nav-item.active .ic { background: #8B7CF0; }
+  .sidebar-foot { margin-top: auto; padding: 10px; border-top: 1px solid #2A2C42; display: flex; align-items: center; gap: 9px; }
+  .sidebar-foot .av { width: 26px; height: 26px; border-radius: 999px; background: #4F3CC9; color: #fff; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  .sidebar-foot .who { font-size: 11.5px; }
+  .sidebar-foot .who span { display: block; color: #7C7F94; font-size: 10px; }
+
+  .admin-main { flex: 1; display: flex; flex-direction: column; overflow: hidden; background: #F6F7FB; }
+  .admin-topbar { display: flex; align-items: center; justify-content: space-between; padding: 13px 24px; background: #fff; border-bottom: 1px solid #E3E5EE; }
+  .breadcrumb { font-size: 13px; color: #6B6E7C; }
+  .breadcrumb b { color: #1A1B23; }
+  .topbar-right { display: flex; align-items: center; gap: 12px; }
+  .search-box { font-family: Consolas, monospace; font-size: 11.5px; color: #9C9FAE; background: #F1F2F7; border: 1px solid #E3E5EE; border-radius: 7px; padding: 6px 12px; width: 190px; }
+  .topbar-av { width: 28px; height: 28px; border-radius: 999px; background: #E4DFF7; color: #4F3CC9; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+
+  .admin-content { flex: 1; overflow: hidden; padding: 20px 24px; }
+  .admin-content h3 { font-size: 17px; margin: 0 0 3px; }
+  .admin-content p.hint { color: #5B5E6E; font-size: 12.5px; margin: 0 0 16px; }
+
+  .stat-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 18px; }
+  .stat-tile { background: #fff; border: 1px solid #E3E5EE; border-radius: 10px; padding: 13px 15px; }
+  .stat-tile .lbl { font-family: Consolas, monospace; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.05em; color: #8B8E9C; }
+  .stat-tile .val { font-size: 22px; font-weight: 700; margin: 4px 0 3px; font-variant-numeric: tabular-nums; }
+  .stat-tile .trend { font-size: 11px; font-weight: 700; }
+  .trend.good { color: #1E9E6B; } .trend.warn { color: #B87B0B; } .trend.critical { color: #DC4B39; }
+
+  .toolbar { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+  .filter-chip { font-size: 11.5px; font-weight: 600; padding: 5px 11px; border-radius: 999px; border: 1px solid #D7DAE4; color: #4A4D5E; background: #fff; }
+  .filter-chip.active { background: #EDE8FB; border-color: #C9BBF2; color: #4F3CC9; }
+  .toolbar .spacer { flex: 1; }
+
+  table.dtable { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid #E3E5EE; border-radius: 10px; overflow: hidden; font-size: 12.5px; }
+  table.dtable th { text-align: left; font-family: Consolas, monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em; color: #8B8E9C; padding: 9px 14px; background: #FAFAFD; border-bottom: 1px solid #E3E5EE; }
+  table.dtable td { padding: 10px 14px; border-bottom: 1px solid #EEF0F5; color: #1A1B23; vertical-align: middle; }
+  table.dtable tr:last-child td { border-bottom: none; }
+  table.dtable td.muted { color: #6B6E7C; }
+  table.dtable td.num { font-variant-numeric: tabular-nums; font-family: Consolas, monospace; }
+
+  .pill-status { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 999px; }
+  .pill-status::before { content:""; width: 6px; height: 6px; border-radius: 999px; background: currentColor; }
+  .pill-status.info { background: #E5F0F8; color: #2266A8; }
+  .pill-status.accent { background: #EDE8FB; color: #4F3CC9; }
+  .pill-status.good { background: #E3F4EC; color: #1E7E52; }
+  .pill-status.warn { background: #FBF0DC; color: #96660B; }
+  .pill-status.critical { background: #FBE7E1; color: #A32C1A; }
+  .pill-status.neutral { background: #EEF0F5; color: #5B5E6E; }
+
+  .priority-pill { font-size: 10.5px; font-weight: 800; padding: 3px 8px; border-radius: 5px; letter-spacing: 0.03em; }
+  .priority-pill.critical { background: #DC4B39; color: #fff; }
+  .priority-pill.high { background: #F0913A; color: #fff; }
+  .priority-pill.medium { background: #E8C13B; color: #4A3B05; }
+  .priority-pill.low { background: #9AA0AE; color: #fff; }
+
+  .workspace-tabs { display: flex; gap: 4px; margin-bottom: 16px; border-bottom: 1px solid #E3E5EE; }
+  .wtab { font-size: 12.5px; font-weight: 700; padding: 9px 15px; color: #8B8E9C; border-bottom: 2px solid transparent; }
+  .wtab.active { color: #4F3CC9; border-color: #4F3CC9; }
+
+  .workspace-grid { display: grid; grid-template-columns: 1.35fr 1fr; gap: 16px; }
+  .panel-card { background: #fff; border: 1px solid #E3E5EE; border-radius: 10px; padding: 16px; }
+  .panel-card h4 { font-size: 13px; margin: 0 0 12px; }
+
+  .score-hero { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; }
+  .score-ring { width: 74px; height: 74px; border-radius: 999px; background: conic-gradient(#4F3CC9 var(--pct,72%), #E9E6F7 0); display: flex; align-items: center; justify-content: center; }
+  .score-ring .inner { width: 58px; height: 58px; border-radius: 999px; background: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px; font-family: Consolas, monospace; }
+  .score-meta .band { font-size: 15px; font-weight: 700; margin-bottom: 3px; }
+  .score-meta .sub { font-size: 11.5px; color: #6B6E7C; }
+
+  .scorebar-row { display: grid; grid-template-columns: 128px 1fr 34px; align-items: center; gap: 10px; margin-bottom: 9px; font-size: 12px; }
+  .scorebar-row .track { height: 7px; border-radius: 999px; background: #EEF0F5; overflow: hidden; }
+  .scorebar-row .fill { height: 100%; border-radius: 999px; }
+  .scorebar-row .val { font-family: Consolas, monospace; font-weight: 700; text-align: right; }
+  .fill.g { background: #1E9E6B; } .fill.y { background: #E8B23B; } .fill.r { background: #DC4B39; }
+
+  ul.plain { margin: 0; padding: 0; list-style: none; }
+  ul.plain li { padding: 8px 0; border-bottom: 1px solid #EEF0F5; font-size: 12.5px; }
+  ul.plain li:last-child { border-bottom: none; }
+  ul.plain li b { display: block; font-size: 12.5px; margin-bottom: 2px; }
+  ul.plain li span { color: #6B6E7C; font-size: 11.5px; }
+
+  .qc-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-bottom: 1px solid #EEF0F5; font-size: 12.5px; }
+  .qc-item .box { width: 16px; height: 16px; border-radius: 5px; border: 2px solid #1E9E6B; background: #1E9E6B; color: #fff; flex-shrink: 0; font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+  .qc-item .box.open { background: #fff; border-color: #D7DAE4; }
+
+  .rbac-grid { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid #E3E5EE; border-radius: 10px; overflow: hidden; font-size: 12px; }
+  .rbac-grid th, .rbac-grid td { padding: 9px 12px; border-bottom: 1px solid #EEF0F5; text-align: center; }
+  .rbac-grid th { font-family: Consolas, monospace; font-size: 10.5px; background: #FAFAFD; color: #6B6E7C; }
+  .rbac-grid td:first-child, .rbac-grid th:first-child { text-align: left; font-weight: 600; }
+  .rbac-grid .chk { color: #1E9E6B; font-weight: 800; }
+  .rbac-grid .no { color: #D7DAE4; }
+
+  .empty-dash { color: #C7C9D4; }
+
+  @page { size: A4 landscape; margin: 8mm; }
+  @media print {
+    .frame-body { height: 157mm; }
+    .screen-page { padding: 3mm 6mm 2mm; }
+    .cover { min-height: 0; height: 178mm; padding: 34px 56px; justify-content: center; }
+    .toc-page { min-height: 0; padding: 20px 56px 20px; }
+    .toc-page h2 { margin: 0 0 4px; font-size: 22px; }
+    .toc-page p.desc { margin: 0 0 16px; font-size: 13px; }
+    .toc-cols { gap: 28px; }
+    .toc-group-h { margin: 0 0 8px; font-size: 13px; }
+    .toc-item { padding: 5px 0; font-size: 12px; }
+  }
+</style>
+
+<!-- ============ COVER ============ -->
+<div class="cover">
+  <div class="eyebrow">Design Reference · v1.0</div>
+  <h1>BGE-100 Screen Mockups</h1>
+  <p class="sub">29 production-grade screens covering the full Client Portal and Admin Panel — built on the workflow and data model from the BGE-100 System Blueprint.</p>
+  <div class="badges">
+    <span class="badge b1">15 Client Portal screens</span>
+    <span class="badge b2">14 Admin Panel screens</span>
+  </div>
+  <div class="legend-row">
+    <span class="sw"><span class="dot" style="background:#0EA5A0"></span>Client Portal brand</span>
+    <span class="sw"><span class="dot" style="background:#4F3CC9"></span>Admin Panel brand</span>
+    <span class="sw"><span class="dot" style="background:#1E9E6B"></span>Good / on-track</span>
+    <span class="sw"><span class="dot" style="background:#E8B23B"></span>Needs attention</span>
+    <span class="sw"><span class="dot" style="background:#DC4B39"></span>Critical / blocked</span>
+  </div>
+</div>
+
+<!-- ============ TOC ============ -->
+<div class="toc-page">
+  <h2>Screen index</h2>
+  <p class="desc">Each screen mirrors the actual assessment questions and admin workflow from the BGE-100 spec — no placeholder content. Client screens follow the 9-section journey exactly as scored; admin screens follow the intake-to-delivery pipeline.</p>
+  <div class="toc-cols">
+    <div>
+      <div class="toc-group-h"><span class="sw" style="background:#0EA5A0"></span>Client Portal</div>
+      <div class="toc-item"><span class="num">C01</span><span class="t">Create Account (Registration)</span></div>
+      <div class="toc-item"><span class="num">C02</span><span class="t">Sign In</span></div>
+      <div class="toc-item"><span class="num">C03</span><span class="t">Welcome &amp; Instructions</span></div>
+      <div class="toc-item"><span class="num">C04</span><span class="t">Section 1 — Business Overview</span></div>
+      <div class="toc-item"><span class="num">C05</span><span class="t">Section 2 — Operations</span></div>
+      <div class="toc-item"><span class="num">C06</span><span class="t">Section 3 — Customer Experience</span></div>
+      <div class="toc-item"><span class="num">C07</span><span class="t">Section 4 — Staff &amp; Human Resources</span></div>
+      <div class="toc-item"><span class="num">C08</span><span class="t">Section 5 — Sales &amp; Marketing</span></div>
+      <div class="toc-item"><span class="num">C09</span><span class="t">Section 6 — Financial &amp; Cost Management</span></div>
+      <div class="toc-item"><span class="num">C10</span><span class="t">Section 7 — Technology &amp; Digital Readiness</span></div>
+      <div class="toc-item"><span class="num">C11</span><span class="t">Section 8 — AI &amp; Automation Opportunity</span></div>
+      <div class="toc-item"><span class="num">C12</span><span class="t">Section 9 — Business Growth Readiness</span></div>
+      <div class="toc-item"><span class="num">C13</span><span class="t">Review &amp; Submit</span></div>
+      <div class="toc-item"><span class="num">C14</span><span class="t">Status Tracker</span></div>
+      <div class="toc-item"><span class="num">C15</span><span class="t">Business Health Report Viewer</span></div>
+    </div>
+    <div>
+      <div class="toc-group-h"><span class="sw" style="background:#4F3CC9"></span>Admin Panel</div>
+      <div class="toc-item"><span class="num">A01</span><span class="t">Sign In</span></div>
+      <div class="toc-item"><span class="num">A02</span><span class="t">Dashboard</span></div>
+      <div class="toc-item"><span class="num">A03</span><span class="t">Assessment List</span></div>
+      <div class="toc-item"><span class="num">A04</span><span class="t">Completeness Check</span></div>
+      <div class="toc-item"><span class="num">A05</span><span class="t">Scoring Workspace</span></div>
+      <div class="toc-item"><span class="num">A06</span><span class="t">Findings &amp; Root Cause</span></div>
+      <div class="toc-item"><span class="num">A07</span><span class="t">Recommendations &amp; Impact Plan</span></div>
+      <div class="toc-item"><span class="num">A08</span><span class="t">Report Builder / Preview</span></div>
+      <div class="toc-item"><span class="num">A09</span><span class="t">QC Checklist</span></div>
+      <div class="toc-item"><span class="num">A10</span><span class="t">Delivery Control</span></div>
+      <div class="toc-item"><span class="num">A11</span><span class="t">RBAC — Roles &amp; Permissions</span></div>
+      <div class="toc-item"><span class="num">A12</span><span class="t">RBAC — Users</span></div>
+      <div class="toc-item"><span class="num">A13</span><span class="t">Master Data Management</span></div>
+      <div class="toc-item"><span class="num">A14</span><span class="t">Audit Log</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ C01 Registration ============ -->
+<div class="screen-page">
+  <div class="screen-label"><span class="sw" style="background:#0EA5A0"></span><span class="txt">Client Portal · C01/15 · <b>Create Account (Registration)</b></span></div>
+  <div class="app-frame">
+    <div class="frame-bar"><span class="tld"></span><span class="tld"></span><span class="tld"></span><div class="frame-url">app.bge100.io/register</div></div>
+    <div class="frame-body">
+      <div class="client-shell" style="align-items:center; justify-content:center;">
+        <div style="width:440px; background:#fff; border:1px solid #DCEEEC; border-radius:14px; padding:22px 28px;">
+          <div style="text-align:center;margin-bottom:12px;">
+            <div style="width:34px;height:34px;border-radius:9px;background:#0EA5A0;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:11px;margin:0 auto 8px;">B100</div>
+            <h2 style="margin:0 0 3px;font-size:17px;">Create your BGE-100 account</h2>
+            <p class="hint" style="margin:0;font-size:12px;">Takes 2 minutes — you'll complete payment next, then start the assessment.</p>
+          </div>
+          <div class="field-grid" style="margin-bottom:10px; gap:10px 16px;">
+            <div class="field wide"><label>Business Name <span class="req">*</span></label><input class="ipt" placeholder="e.g. Sunrise Tea House" /></div>
+            <div class="field"><label>Contact Person <span class="req">*</span></label><input class="ipt" placeholder="Full name" /></div>
+            <div class="field"><label>Position / Role <span class="req">*</span></label><input class="ipt" placeholder="e.g. Owner" /></div>
+            <div class="field"><label>Email Address <span class="req">*</span></label><input class="ipt" placeholder="you@business.com" /></div>
+            <div class="field"><label>Phone Number <span class="req">*</span></label><input class="ipt" placeholder="+886 9xx xxx xxx" /></div>
+            <div class="field"><label>Create Password <span class="req">*</span></label><input class="ipt" type="password" placeholder="8+ characters" /></div>
+            <div class="field"><label>Confirm Password <span class="req">*</span></label><input class="ipt" type="password" placeholder="Repeat password" /></div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:flex-start;margin-bottom:10px;">
+            <div style="width:14px;height:14px;border:2px solid #0EA5A0;border-radius:4px;flex-shrink:0;margin-top:1px;"></div>
+            <p style="margin:0;font-size:11px;color:#5B5E6E;">I agree to the Terms of Service and Privacy Policy, and confirm I'm authorized to complete this assessment on behalf of my business.</p>
+          </div>
+          <button class="btn btn-primary" style="width:100%;padding:9px;margin-bottom:8px;">Create Account &amp; Continue to Payment</button>
+          <p class="save-note" style="text-align:center;">Already have an account? <span style="color:#0EA5A0;font-weight:700;">Sign in</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ C02 Sign In ============ -->
+<div class="screen-page">
+  <div class="screen-label"><span class="sw" style="background:#0EA5A0"></span><span class="txt">Client Portal · C02/15 · <b>Sign In</b></span></div>
+  <div class="app-frame">
+    <div class="frame-bar"><span class="tld"></span><span class="tld"></span><span class="tld"></span><div class="frame-url">app.bge100.io/login</div></div>
+    <div class="frame-body">
+      <div class="client-shell" style="align-items:center; justify-content:center;">
+        <div style="width:380px; background:#fff; border:1px solid #DCEEEC; border-radius:14px; padding:32px; text-align:center;">
+          <div class="mark" style="width:40px;height:40px;border-radius:11px;background:#0EA5A0;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;margin:0 auto 14px;">B100</div>
+          <h2 style="margin:0 0 4px;font-size:19px;">Sign in to BGE-100</h2>
+          <p class="hint" style="margin-bottom:20px;">Access your Business Growth &amp; Efficiency Assessment</p>
+          <div class="field" style="text-align:left;margin-bottom:12px;"><label>Email address</label><input class="ipt" value="owner@sunriseteahouse.tw" readonly /></div>
+          <div class="field" style="text-align:left;margin-bottom:18px;"><label>Password</label><input class="ipt" type="password" value="••••••••••" readonly /></div>
+          <button class="btn btn-primary" style="width:100%;padding:11px;">Sign In</button>
+          <p class="save-note" style="margin-top:14px;">New client? <span style="color:#0EA5A0;font-weight:700;">Create an account</span> to purchase BGE-100.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ C03 Welcome ============ -->
+<div class="screen-page">
+  <div class="screen-label"><span class="sw" style="background:#0EA5A0"></span><span class="txt">Client Portal · C03/15 · <b>Welcome &amp; Instructions</b></span></div>
+  <div class="app-frame">
+    <div class="frame-bar"><span class="tld"></span><span class="tld"></span><span class="tld"></span><div class="frame-url">app.bge100.io/assessment/welcome</div></div>
+    <div class="frame-body">
+      <div class="client-shell">
+        <div class="client-top">
+          <div class="client-logo"><span class="mark">B100</span><span class="name">BGE-100<span>Business Growth &amp; Efficiency Assessment</span></span></div>
+          <div class="client-user"><span class="av">SC</span>Sunrise Tea House</div>
+        </div>
+        <div class="client-main" style="align-items:center;">
+          <div class="client-card">
+            <div class="kicker">Before you begin</div>
+            <h2>Welcome to your BGE-100 Assessment</h2>
+            <p class="hint">This assessment covers 9 areas of your business and takes most owners 35–50 minutes. You can save and come back at any time — nothing is scored until you submit.</p>
+            <div class="field-grid" style="margin-bottom:20px;">
+              <div class="field"><label>Business Name</label><input class="ipt" value="Sunrise Tea House" /></div>
+              <div class="field"><label>Contact Person</label><input class="ipt" value="Chen Mei-Ling" /></div>
+              <div class="field"><label>Position / Role</label><input class="ipt" value="Owner" /></div>
+              <div class="field"><label>Industry / Business Type</label><input class="ipt" value="Tea Shop" /></div>
+            </div>
+            <div class="panel-card" style="background:#F5FBFA;border-color:#DCEEEC;margin-bottom:20px;">
+              <p style="margin:0;font-size:12.5px;color:#33364A;">Please answer as accurately as possible — there are no "right" answers. Your responses are reviewed by a consultant, not scored automatically, so honesty here directly improves the quality of your report.</p>
+            </div>
+            <div class="client-actions"><span class="save-note">9 sections · Section 1 starts next</span><button class="btn btn-primary">Start Assessment</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ C04 Section 1 ============ -->
+<div class="screen-page">
+  <div class="screen-label"><span class="sw" style="background:#0EA5A0"></span><span class="txt">Client Portal · C04/15 · <b>Section 1 — Business Overview</b></span></div>
+  <div class="app-frame">
+    <div class="frame-bar"><span class="tld"></span><span class="tld"></span><span class="tld"></span><div class="frame-url">app.bge100.io/assessment/section-1</div></div>
+    <div class="frame-body">
+      <div class="client-shell">
+        <div class="client-top">
+          <div class="client-logo"><span class="mark">B100</span><span class="name">BGE-100<span>Sunrise Tea House</span></span></div>
+          <div class="step-chip">Step 1 of 9</div>
+        </div>
+        <div class="stepper">
+          <div class="seg now"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div>
+        </div>
+        <div class="client-main">
+          <div class="client-card">
+            <div class="kicker">Section 1 of 9 · Weight 5%</div>
+            <h2>Business Overview</h2>
+            <p class="hint">Understanding your business — who you are, what you do, and where you want to go.</p>
+            <div class="field-grid">
+              <div class="field"><label>Business Name <span class="req">*</span></label><input class="ipt" value="Sunrise Tea House" /></div>
+              <div class="field"><label>Year Established <span class="req">*</span></label><input class="ipt" value="2019" /></div>
+              <div class="field wide"><label>What type of business do you operate? <span class="req">*</span></label>
+                <div class="choice-pills">
+                  <span class="pill-choice">Restaurant</span><span class="pill-choice">Café</span><span class="pill-choice active">Tea Shop</span><span class="pill-choice">Bakery</span><span class="pill-choice">Dessert Shop</span><span class="pill-choice">Fast Food</span><span class="pill-choice">Franchise</span><span class="pill-choice">Other</span>
+                </div>
+              </div>
+              <div class="field"><label>Number of Employees — Full-Time</label><input class="ipt" value="6" /></div>
+              <div class="field"><label>Number of Employees — Part-Time</label><input class="ipt" value="4" /></div>
+              <div class="field wide"><label>What are your top three business goals for the next 12 months? <span class="req">*</span></label><textarea class="ipt" rows="2">Open a second location, reduce staff turnover, and build a repeat-customer loyalty program.</textarea></div>
+              <div class="field wide"><label>How would you rate your overall business performance?</label>
+                <div class="rating-row">
+                  <span class="rating-btn">1</span><span class="rating-btn">2</span><span class="rating-btn">3</span><span class="rating-btn">4</span><span class="rating-btn">5</span><span class="rating-btn active">6</span><span class="rating-btn">7</span><span class="rating-btn">8</span><span class="rating-btn">9</span><span class="rating-btn">10</span>
+                </div>
+              </div>
+            </div>
+            <div class="client-actions"><span class="save-note">Autosaved 2 minutes ago</span><span><button class="btn btn-ghost" style="margin-right:8px;">Back</button><button class="btn btn-primary">Save &amp; Continue</button></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ C05 Section 2 ============ -->
+<div class="screen-page">
+  <div class="screen-label"><span class="sw" style="background:#0EA5A0"></span><span class="txt">Client Portal · C05/15 · <b>Section 2 — Operations</b></span></div>
+  <div class="app-frame">
+    <div class="frame-bar"><span class="tld"></span><span class="tld"></span><span class="tld"></span><div class="frame-url">app.bge100.io/assessment/section-2</div></div>
+    <div class="frame-body">
+      <div class="client-shell">
+        <div class="client-top">
+          <div class="client-logo"><span class="mark">B100</span><span class="name">BGE-100<span>Sunrise Tea House</span></span></div>
+          <div class="step-chip">Step 2 of 9</div>
+        </div>
+        <div class="stepper">
+          <div class="seg done"></div><div class="seg now"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div>
+        </div>
+        <div class="client-main">
+          <div class="client-card">
+            <div class="kicker">Section 2 of 9 · Weight 20% — the largest section</div>
+            <h2>Operations</h2>
+            <p class="hint">How efficiently your business runs day to day.</p>
+            <div class="field-grid">
+              <div class="field wide"><label>Do you have documented SOPs for your business? <span class="req">*</span></label>
+                <div class="choice-pills"><span class="pill-choice">Yes</span><span class="pill-choice active">Partially</span><span class="pill-choice">No</span></div>
+              </div>
+              <div class="field wide"><label>Which departments have SOPs?</label>
+                <div class="choice-pills"><span class="pill-choice active">Kitchen</span><span class="pill-choice active">Cashier</span><span class="pill-choice">Front of House</span><span class="pill-choice">Cleaning</span><span class="pill-choice">Inventory</span><span class="pill-choice">Staff Training</span><span class="pill-choice">Customer Service</span></div>
+              </div>
+              <div class="field wide"><label>Which daily tasks are currently performed manually?</label><textarea class="ipt" rows="2">End-of-day cash reconciliation, inventory counts, and staff scheduling are all done on paper.</textarea></div>
+              <div class="field"><label>Rate: Kitchen Efficiency</label>
+                <div class="rating-row"><span class="rating-btn">1</span><span class="rating-btn">2</span><span class="rating-btn">3</span><span class="rating-btn active">4</span><span class="rating-btn">5</span><span class="rating-btn">6</span><span class="rating-btn">7</span><span class="rating-btn">8</span><span class="rating-btn">9</span><span class="rating-btn">10</span></div>
+              </div>
+              <div class="field"><label>Rate: Order Accuracy</label>
+                <div class="rating-row"><span class="rating-btn">1</span><span class="rating-btn">2</span><span class="rating-btn">3</span><span class="rating-btn">4</span><span class="rating-btn">5</span><span class="rating-btn">6</span><span class="rating-btn active">7</span><span class="rating-btn">8</span><span class="rating-btn">9</span><span class="rating-btn">10</span></div>
+              </div>
+            </div>
+            <div class="client-actions"><span class="save-note">Autosaved just now</span><span><button class="btn btn-ghost" style="margin-right:8px;">Back</button><button class="btn btn-primary">Save &amp; Continue</button></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ C06 Section 3 ============ -->
+<div class="screen-page">
+  <div class="screen-label"><span class="sw" style="background:#0EA5A0"></span><span class="txt">Client Portal · C06/15 · <b>Section 3 — Customer Experience</b></span></div>
+  <div class="app-frame">
+    <div class="frame-bar"><span class="tld"></span><span class="tld"></span><span class="tld"></span><div class="frame-url">app.bge100.io/assessment/section-3</div></div>
+    <div class="frame-body">
+      <div class="client-shell">
+        <div class="client-top"><div class="client-logo"><span class="mark">B100</span><span class="name">BGE-100<span>Sunrise Tea House</span></span></div><div class="step-chip">Step 3 of 9</div></div>
+        <div class="stepper"><div class="seg done"></div><div class="seg done"></div><div class="seg now"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div></div>
+        <div class="client-main">
+          <div class="client-card">
+            <div class="kicker">Section 3 of 9 · Weight 15%</div>
+            <h2>Customer Experience</h2>
+            <p class="hint">How customers discover, experience, and feel about your business.</p>
+            <div class="field-grid">
+              <div class="field wide"><label>Who are your primary customers?</label>
+                <div class="choice-pills"><span class="pill-choice active">Students</span><span class="pill-choice active">Office Workers</span><span class="pill-choice">Families</span><span class="pill-choice">Tourists</span><span class="pill-choice">Local Residents</span><span class="pill-choice">Businesses</span></div>
+              </div>
+              <div class="field wide"><label>How do most customers discover your business?</label>
+                <div class="choice-pills"><span class="pill-choice">Google Search</span><span class="pill-choice">Google Maps</span><span class="pill-choice active">Instagram</span><span class="pill-choice active">Word of Mouth</span><span class="pill-choice">Delivery Apps</span><span class="pill-choice">Walk-in</span></div>
+              </div>
+              <div class="field"><label>Do you have a loyalty program?</label><div class="choice-pills"><span class="pill-choice">Yes</span><span class="pill-choice active">No</span></div></div>
+              <div class="field"><label>Overall customer satisfaction</label>
+                <div class="rating-row"><span class="rating-btn">1</span><span class="rating-btn">2</span><span class="rating-btn">3</span><span class="rating-btn">4</span><span class="rating-btn">5</span><span class="rating-btn">6</span><span class="rating-btn">7</span><span class="rating-btn active">8</span><span class="rating-btn">9</span><span class="rating-btn">10</span></div>
+              </div>
+              <div class="field wide"><label>What are the three most common customer complaints?</label><textarea class="ipt" rows="2">Long wait times during the 3–5pm rush, limited seating, and inconsistent drink sweetness levels.</textarea></div>
+            </div>
+            <div class="client-actions"><span class="save-note">Autosaved 40 seconds ago</span><span><button class="btn btn-ghost" style="margin-right:8px;">Back</button><button class="btn btn-primary">Save &amp; Continue</button></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ C07 Section 4 ============ -->
+<div class="screen-page">
+  <div class="screen-label"><span class="sw" style="background:#0EA5A0"></span><span class="txt">Client Portal · C07/15 · <b>Section 4 — Staff &amp; Human Resources</b></span></div>
+  <div class="app-frame">
+    <div class="frame-bar"><span class="tld"></span><span class="tld"></span><span class="tld"></span><div class="frame-url">app.bge100.io/assessment/section-4</div></div>
+    <div class="frame-body">
+      <div class="client-shell">
+        <div class="client-top"><div class="client-logo"><span class="mark">B100</span><span class="name">BGE-100<span>Sunrise Tea House</span></span></div><div class="step-chip">Step 4 of 9</div></div>
+        <div class="stepper"><div class="seg done"></div><div class="seg done"></div><div class="seg done"></div><div class="seg now"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div></div>
+        <div class="client-main">
+          <div class="client-card">
+            <div class="kicker">Section 4 of 9 · Weight 15%</div>
+            <h2>Staff &amp; Human Resources</h2>
+            <p class="hint">Recruitment, onboarding, training, and retention.</p>
+            <div class="field-grid">
+              <div class="field"><label>Total Employees — Full-Time</label><input class="ipt" value="6" /></div>
+              <div class="field"><label>Total Employees — Part-Time</label><input class="ipt" value="4" /></div>
+              <div class="field wide"><label>Which position has the highest turnover?</label><input class="ipt" value="Part-time counter staff" /></div>
+              <div class="field wide"><label>Do you have a formal onboarding process?</label>
+                <div class="choice-pills"><span class="pill-choice">Yes</span><span class="pill-choice active">Partially</span><span class="pill-choice">No</span></div>
+              </div>
+              <div class="field wide"><label>Average employee retention period</label><input class="ipt" value="About 8 months for part-time staff" /></div>
+              <div class="field wide"><label>Rate: Overall HR Management</label>
+                <div class="rating-row"><span class="rating-btn">1</span><span class="rating-btn">2</span><span class="rating-btn">3</span><span class="rating-btn active">4</span><span class="rating-btn">5</span><span class="rating-btn">6</span><span class="rating-btn">7</span><span class="rating-btn">8</span><span class="rating-btn">9</span><span class="rating-btn">10</span></div>
+              </div>
+            </div>
+            <div class="client-actions"><span class="save-note">Autosaved just now</span><span><button class="btn btn-ghost" style="margin-right:8px;">Back</button><button class="btn btn-primary">Save &amp; Continue</button></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ C08 Section 5 ============ -->
+<div class="screen-page">
+  <div class="screen-label"><span class="sw" style="background:#0EA5A0"></span><span class="txt">Client Portal · C08/15 · <b>Section 5 — Sales &amp; Marketing</b></span></div>
+  <div class="app-frame">
+    <div class="frame-bar"><span class="tld"></span><span class="tld"></span><span class="tld"></span><div class="frame-url">app.bge100.io/assessment/section-5</div></div>
+    <div class="frame-body">
+      <div class="client-shell">
+        <div class="client-top"><div class="client-logo"><span class="mark">B100</span><span class="name">BGE-100<span>Sunrise Tea House</span></span></div><div class="step-chip">Step 5 of 9</div></div>
+        <div class="stepper"><div class="seg done"></div><div class="seg done"></div><div class="seg done"></div><div class="seg done"></div><div class="seg now"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div></div>
+        <div class="client-main">
+          <div class="client-card">
+            <div class="kicker">Section 5 of 9 · Weight 15%</div>
+            <h2>Sales &amp; Marketing</h2>
+            <p class="hint">How you attract, convert, and keep customers.</p>
+            <div class="field-grid">
+              <div class="field"><label>What is your average daily sales?</label><input class="ipt" value="NT$ 18,500" /></div>
+              <div class="field"><label>What is your average customer spend?</label><input class="ipt" value="NT$ 145" /></div>
+              <div class="field wide"><label>Which marketing activities do you currently use?</label>
+                <div class="choice-pills"><span class="pill-choice active">Instagram</span><span class="pill-choice active">Facebook</span><span class="pill-choice">TikTok</span><span class="pill-choice">Google Ads</span><span class="pill-choice">Influencers</span><span class="pill-choice">Flyers</span><span class="pill-choice">LINE Marketing</span></div>
+              </div>
+              <div class="field wide"><label>How do you position your brand?</label>
+                <div class="choice-pills"><span class="pill-choice">Premium</span><span class="pill-choice">Budget</span><span class="pill-choice active">Authentic</span><span class="pill-choice">Family</span><span class="pill-choice">Fast Service</span></div>
+              </div>
+              <div class="field wide"><label>Rate: Overall Sales &amp; Marketing Performance</label>
+                <div class="rating-row"><span class="rating-btn">1</span><span class="rating-btn">2</span><span class="rating-btn">3</span><span class="rating-btn active">4</span><span class="rating-btn">5</span><span class="rating-btn">6</span><span class="rating-btn">7</span><span class="rating-btn">8</span><span class="rating-btn">9</span><span class="rating-btn">10</span></div>
+              </div>
+            </div>
+            <div class="client-actions"><span class="save-note">Autosaved 1 minute ago</span><span><button class="btn btn-ghost" style="margin-right:8px;">Back</button><button class="btn btn-primary">Save &amp; Continue</button></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ C09 Section 6 ============ -->
+<div class="screen-page">
+  <div class="screen-label"><span class="sw" style="background:#0EA5A0"></span><span class="txt">Client Portal · C09/15 · <b>Section 6 — Financial &amp; Cost Management</b></span></div>
+  <div class="app-frame">
+    <div class="frame-bar"><span class="tld"></span><span class="tld"></span><span class="tld"></span><div class="frame-url">app.bge100.io/assessment/section-6</div></div>
+    <div class="frame-body">
+      <div class="client-shell">
+        <div class="client-top"><div class="client-logo"><span class="mark">B100</span><span class="name">BGE-100<span>Sunrise Tea House</span></span></div><div class="step-chip">Step 6 of 9</div></div>
+        <div class="stepper"><div class="seg done"></div><div class="seg done"></div><div class="seg done"></div><div class="seg done"></div><div class="seg done"></div><div class="seg now"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div></div>
+        <div class="client-main">
+          <div class="client-card">
+            <div class="kicker">Section 6 of 9 · Weight 10%</div>
+            <h2>Financial &amp; Cost Management</h2>
+            <p class="hint">Revenue, costs, pricing, and cash flow.</p>
+            <div class="field-grid">
+              <div class="field"><label>Total revenue — last 12 months</label><input class="ipt" value="NT$ 6,750,000" /></div>
+              <div class="field"><label>Average monthly net profit</label><input class="ipt" value="NT$ 92,000" /></div>
+              <div class="field wide"><label>Is your revenue:</label>
+                <div class="choice-pills"><span class="pill-choice active">Increasing</span><span class="pill-choice">Stable</span><span class="pill-choice">Decreasing</span></div>
+              </div>
+              <div class="field wide"><label>Do you prepare a monthly cash flow forecast?</label>
+                <div class="choice-pills"><span class="pill-choice">Yes</span><span class="pill-choice active">No</span></div>
+              </div>
+              <div class="field wide"><label>Rate: Overall Financial Health</label>
+                <div class="rating-row"><span class="rating-btn">1</span><span class="rating-btn">2</span><span class="rating-btn">3</span><span class="rating-btn">4</span><span class="rating-btn active">5</span><span class="rating-btn">6</span><span class="rating-btn">7</span><span class="rating-btn">8</span><span class="rating-btn">9</span><span class="rating-btn">10</span></div>
+              </div>
+            </div>
+            <div class="client-actions"><span class="save-note">Autosaved just now</span><span><button class="btn btn-ghost" style="margin-right:8px;">Back</button><button class="btn btn-primary">Save &amp; Continue</button></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ C10 Section 7 ============ -->
+<div class="screen-page">
+  <div class="screen-label"><span class="sw" style="background:#0EA5A0"></span><span class="txt">Client Portal · C10/15 · <b>Section 7 — Technology &amp; Digital Readiness</b></span></div>
+  <div class="app-frame">
+    <div class="frame-bar"><span class="tld"></span><span class="tld"></span><span class="tld"></span><div class="frame-url">app.bge100.io/assessment/section-7</div></div>
+    <div class="frame-body">
+      <div class="client-shell">
+        <div class="client-top"><div class="client-logo"><span class="mark">B100</span><span class="name">BGE-100<span>Sunrise Tea House</span></span></div><div class="step-chip">Step 7 of 9</div></div>
+        <div class="stepper"><div class="seg done"></div><div class="seg done"></div><div class="seg done"></div><div class="seg done"></div><div class="seg done"></div><div class="seg done"></div><div class="seg now"></div><div class="seg"></div><div class="seg"></div></div>
+        <div class="client-main">
+          <div class="client-card">
+            <div class="kicker">Section 7 of 9 · Weight 10%</div>
+            <h2>Technology &amp; Digital Readiness</h2>
+            <p class="hint">Current systems, digital presence, and AI awareness.</p>
+            <div class="field-grid">
+              <div class="field"><label>Which POS system do you currently use?</label><input class="ipt" value="iCHEF" /></div>
+              <div class="field wide"><label>Are your systems connected or separate?</label>
+                <div class="choice-pills"><span class="pill-choice">Fully Integrated</span><span class="pill-choice active">Partially Integrated</span><span class="pill-choice">Completely Separate</span></div>
+              </div>
+              <div class="field wide"><label>Which AI tools have you used?</label>
+                <div class="choice-pills"><span class="pill-choice active">ChatGPT</span><span class="pill-choice">Gemini</span><span class="pill-choice">Claude</span><span class="pill-choice">Canva AI</span><span class="pill-choice">None</span></div>
+              </div>
+              <div class="field wide"><label>Rate: Overall Technology Readiness</label>
+                <div class="rating-row"><span class="rating-btn">1</span><span class="rating-btn">2</span><span class="rating-btn">3</span><span class="rating-btn active">4</span><span class="rating-btn">5</span><span class="rating-btn">6</span><span class="rating-btn">7</span><span class="rating-btn">8</span><span class="rating-btn">9</span><span class="rating-btn">10</span></div>
+              </div>
+            </div>
+            <div class="client-actions"><span class="save-note">Autosaved just now</span><span><button class="btn btn-ghost" style="margin-right:8px;">Back</button><button class="btn btn-primary">Save &amp; Continue</button></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ C11 Section 8 ============ -->
+<div class="screen-page">
+  <div class="screen-label"><span class="sw" style="background:#0EA5A0"></span><span class="txt">Client Portal · C11/15 · <b>Section 8 — AI &amp; Automation Opportunity</b></span></div>
+  <div class="app-frame">
+    <div class="frame-bar"><span class="tld"></span><span class="tld"></span><span class="tld"></span><div class="frame-url">app.bge100.io/assessment/section-8</div></div>
+    <div class="frame-body">
+      <div class="client-shell">
+        <div class="client-top"><div class="client-logo"><span class="mark">B100</span><span class="name">BGE-100<span>Sunrise Tea House</span></span></div><div class="step-chip">Step 8 of 9</div></div>
+        <div class="stepper"><div class="seg done"></div><div class="seg done"></div><div class="seg done"></div><div class="seg done"></div><div class="seg done"></div><div class="seg done"></div><div class="seg done"></div><div class="seg now"></div><div class="seg"></div></div>
+        <div class="client-main">
+          <div class="client-card">
+            <div class="kicker">Section 8 of 9 · Weight 5% · Diagnostic only — not a sales pitch</div>
+            <h2>AI &amp; Automation Opportunity</h2>
+            <p class="hint">Where repetitive work happens — this identifies opportunities, it doesn't sell you anything.</p>
+            <div class="field-grid">
+              <div class="field wide"><label>Which tasks are repeated every day?</label><textarea class="ipt" rows="2">Answering the same delivery-time and menu questions on LINE and Instagram DMs, every single day.</textarea></div>
+              <div class="field"><label>Would 24/7 customer support benefit your business?</label><div class="choice-pills"><span class="pill-choice active">Yes</span><span class="pill-choice">No</span><span class="pill-choice">Unsure</span></div></div>
+              <div class="field"><label>Management willingness to adopt AI</label>
+                <div class="rating-row"><span class="rating-btn">1</span><span class="rating-btn">2</span><span class="rating-btn">3</span><span class="rating-btn">4</span><span class="rating-btn">5</span><span class="rating-btn">6</span><span class="rating-btn active">7</span><span class="rating-btn">8</span><span class="rating-btn">9</span><span class="rating-btn">10</span></div>
+              </div>
+              <div class="field wide"><label>Rate potential business value: Customer Service</label>
+                <div class="rating-row"><span class="rating-btn">1</span><span class="rating-btn">2</span><span class="rating-btn">3</span><span class="rating-btn">4</span><span class="rating-btn">5</span><span class="rating-btn">6</span><span class="rating-btn">7</span><span class="rating-btn active">8</span><span class="rating-btn">9</span><span class="rating-btn">10</span></div>
+              </div>
+            </div>
+            <div class="client-actions"><span class="save-note">Autosaved just now</span><span><button class="btn btn-ghost" style="margin-right:8px;">Back</button><button class="btn btn-primary">Save &amp; Continue</button></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ C12 Section 9 ============ -->
+<div class="screen-page">
+  <div class="screen-label"><span class="sw" style="background:#0EA5A0"></span><span class="txt">Client Portal · C12/15 · <b>Section 9 — Business Growth Readiness</b></span></div>
+  <div class="app-frame">
+    <div class="frame-bar"><span class="tld"></span><span class="tld"></span><span class="tld"></span><div class="frame-url">app.bge100.io/assessment/section-9</div></div>
+    <div class="frame-body">
+      <div class="client-shell">
+        <div class="client-top"><div class="client-logo"><span class="mark">B100</span><span class="name">BGE-100<span>Sunrise Tea House</span></span></div><div class="step-chip">Step 9 of 9</div></div>
+        <div class="stepper"><div class="seg done"></div><div class="seg done"></div><div class="seg done"></div><div class="seg done"></div><div class="seg done"></div><div class="seg done"></div><div class="seg done"></div><div class="seg done"></div><div class="seg now"></div></div>
+        <div class="client-main">
+          <div class="client-card">
+            <div class="kicker">Section 9 of 9 · Weight 5% · Final section</div>
+            <h2>Business Growth Readiness</h2>
+            <p class="hint">Vision, expansion plans, and what's holding growth back.</p>
+            <div class="field-grid">
+              <div class="field wide"><label>What are your top three growth objectives?</label><textarea class="ipt" rows="2">Open a second location within 18 months, add a wholesale tea-leaf line, and improve staff retention.</textarea></div>
+              <div class="field"><label>Are you planning to expand within 24 months?</label><div class="choice-pills"><span class="pill-choice active">Yes</span><span class="pill-choice">No</span><span class="pill-choice">Undecided</span></div></div>
+              <div class="field"><label>Which business area is limiting your growth?</label><div class="choice-pills"><span class="pill-choice">Sales</span><span class="pill-choice active">Staff</span><span class="pill-choice">Finance</span></div></div>
+              <div class="field wide"><label>Rate: Overall Growth Readiness</label>
+                <div class="rating-row"><span class="rating-btn">1</span><span class="rating-btn">2</span><span class="rating-btn">3</span><span class="rating-btn">4</span><span class="rating-btn active">5</span><span class="rating-btn">6</span><span class="rating-btn">7</span><span class="rating-btn">8</span><span class="rating-btn">9</span><span class="rating-btn">10</span></div>
+              </div>
+            </div>
+            <div class="client-actions"><span class="save-note">Last section — review comes next</span><span><button class="btn btn-ghost" style="margin-right:8px;">Back</button><button class="btn btn-primary">Review Answers</button></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ C13 Review & Submit ============ -->
+<div class="screen-page">
+  <div class="screen-label"><span class="sw" style="background:#0EA5A0"></span><span class="txt">Client Portal · C13/15 · <b>Review &amp; Submit</b></span></div>
+  <div class="app-frame">
+    <div class="frame-bar"><span class="tld"></span><span class="tld"></span><span class="tld"></span><div class="frame-url">app.bge100.io/assessment/review</div></div>
+    <div class="frame-body">
+      <div class="client-shell">
+        <div class="client-top"><div class="client-logo"><span class="mark">B100</span><span class="name">BGE-100<span>Sunrise Tea House</span></span></div><div class="client-user"><span class="av">SC</span>Chen Mei-Ling</div></div>
+        <div class="client-main">
+          <div class="client-card" style="max-width:640px;">
+            <div class="kicker">Final step</div>
+            <h2>Review your assessment</h2>
+            <p class="hint">All 9 sections are complete. Review the summary below, then submit for analysis.</p>
+            <ul class="plain" style="margin-bottom:18px;">
+              <li><b>1. Business Overview</b><span>12 of 12 questions answered</span></li>
+              <li><b>2. Operations</b><span>19 of 19 questions answered</span></li>
+              <li><b>3. Customer Experience</b><span>16 of 16 questions answered</span></li>
+              <li><b>4. Staff &amp; Human Resources</b><span>21 of 21 questions answered</span></li>
+              <li><b>5. Sales &amp; Marketing</b><span>18 of 18 questions answered</span></li>
+              <li><b>6–9. Financial, Technology, AI, Growth</b><span>All complete</span></li>
+            </ul>
+            <div class="panel-card" style="background:#F5FBFA;border-color:#DCEEEC;margin-bottom:18px;display:flex;gap:10px;align-items:flex-start;">
+              <div style="width:16px;height:16px;border:2px solid #0EA5A0;border-radius:5px;flex-shrink:0;margin-top:2px;"></div>
+              <p style="margin:0;font-size:12.5px;">I confirm that the information provided in this assessment is accurate and represents the current state of my business.</p>
+            </div>
+            <div class="client-actions"><span class="save-note">Once submitted, answers are locked</span><button class="btn btn-primary">Submit BGE-100 Assessment</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ C14 Status Tracker ============ -->
+<div class="screen-page">
+  <div class="screen-label"><span class="sw" style="background:#0EA5A0"></span><span class="txt">Client Portal · C14/15 · <b>Status Tracker</b></span></div>
+  <div class="app-frame">
+    <div class="frame-bar"><span class="tld"></span><span class="tld"></span><span class="tld"></span><div class="frame-url">app.bge100.io/assessment/status</div></div>
+    <div class="frame-body">
+      <div class="client-shell">
+        <div class="client-top"><div class="client-logo"><span class="mark">B100</span><span class="name">BGE-100<span>Sunrise Tea House</span></span></div><div class="client-user"><span class="av">SC</span>Chen Mei-Ling</div></div>
+        <div class="client-main">
+          <div class="client-card" style="max-width:640px;">
+            <div class="kicker">Submitted 2026-08-29</div>
+            <h2>Your assessment is being reviewed</h2>
+            <p class="hint">Our consultant team is analyzing your responses. Expected delivery: 3–5 business days.</p>
+            <ul class="plain">
+              <li><b style="color:#1E9E6B;">✓ Submitted</b><span>Received 2026-08-29, 4:12 PM</span></li>
+              <li><b style="color:#1E9E6B;">✓ Completeness check passed</b><span>Verified 2026-08-30, 9:05 AM</span></li>
+              <li><b style="color:#4F3CC9;">● Under analysis</b><span>Your consultant is scoring all 9 sections</span></li>
+              <li><b class="empty-dash">○ Report preparation</b><span>Not started</span></li>
+              <li><b class="empty-dash">○ Quality control</b><span>Not started</span></li>
+              <li><b class="empty-dash">○ Delivered</b><span>Not started</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ C15 Report Viewer ============ -->
+<div class="screen-page">
+  <div class="screen-label"><span class="sw" style="background:#0EA5A0"></span><span class="txt">Client Portal · C15/15 · <b>Business Health Report Viewer</b></span></div>
+  <div class="app-frame">
+    <div class="frame-bar"><span class="tld"></span><span class="tld"></span><span class="tld"></span><div class="frame-url">app.bge100.io/reports/sunrise-tea-house</div></div>
+    <div class="frame-body">
+      <div class="client-shell" style="background:#F6F7FB;">
+        <div class="client-top"><div class="client-logo"><span class="mark">B100</span><span class="name">BGE-100<span>Sunrise Tea House</span></span></div><div class="client-user"><span class="av">SC</span>Chen Mei-Ling</div></div>
+        <div class="client-main" style="align-items:flex-start;">
+          <div class="client-card" style="max-width:820px;">
+            <div class="kicker">Business Health Report · Delivered 2026-09-03</div>
+            <h2 style="margin-bottom:16px;">Your Business Health Score</h2>
+            <div class="panel-card" style="margin-bottom:16px;">
+              <div class="score-hero">
+                <div class="score-ring" style="--pct:68%;"><div class="inner">68</div></div>
+                <div class="score-meta"><div class="band" style="color:#B87B0B;">Fair</div><div class="sub">Multiple operational weaknesses limiting growth</div></div>
+              </div>
+              <div class="scorebar-row"><span>Business Overview</span><div class="track"><div class="fill g" style="width:82%"></div></div><span class="val">8/10</span></div>
+              <div class="scorebar-row"><span>Operations</span><div class="track"><div class="fill r" style="width:42%"></div></div><span class="val">4/10</span></div>
+              <div class="scorebar-row"><span>Customer Experience</span><div class="track"><div class="fill y" style="width:68%"></div></div><span class="val">7/10</span></div>
+              <div class="scorebar-row"><span>Staff &amp; HR</span><div class="track"><div class="fill r" style="width:38%"></div></div><span class="val">4/10</span></div>
+              <div class="scorebar-row"><span>Sales &amp; Marketing</span><div class="track"><div class="fill y" style="width:60%"></div></div><span class="val">6/10</span></div>
+            </div>
+            <div class="panel-card">
+              <h4 style="margin-bottom:10px;">Top priority recommendations</h4>
+              <ul class="plain">
+                <li><b><span class="priority-pill critical" style="margin-right:6px;">CRITICAL</span>Document kitchen &amp; cashier SOPs</b><span>Root cause of 40% of operational mistakes reported</span></li>
+                <li><b><span class="priority-pill high" style="margin-right:6px;">HIGH</span>Formalize staff onboarding</b><span>Retention risk — part-time turnover at 8 months average</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ A01 Admin Sign In ============ -->
+<div class="screen-page">
+  <div class="screen-label"><span class="sw" style="background:#4F3CC9"></span><span class="txt">Admin Panel · A01/14 · <b>Sign In</b></span></div>
+  <div class="app-frame">
+    <div class="frame-bar"><span class="tld"></span><span class="tld"></span><span class="tld"></span><div class="frame-url">admin.bge100.io/login</div></div>
+    <div class="frame-body" style="background:#171A2B; align-items:center; justify-content:center;">
+      <div style="width:380px; background:#20223A; border:1px solid #33365A; border-radius:14px; padding:32px; text-align:center;">
+        <div style="width:40px;height:40px;border-radius:11px;background:#4F3CC9;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;margin:0 auto 14px;">B100</div>
+        <h2 style="margin:0 0 4px;font-size:19px;color:#fff;">BGE-100 Admin</h2>
+        <p style="margin:0 0 20px;font-size:12.5px;color:#9C9BB3;">Internal access only</p>
+        <div class="field" style="text-align:left;margin-bottom:12px;"><label style="color:#C3C2D6;">Work email</label><input class="ipt" style="background:#171A2B;border-color:#3A3D57;color:#fff;" value="priya.consultant@bge100.io" readonly /></div>
+        <div class="field" style="text-align:left;margin-bottom:18px;"><label style="color:#C3C2D6;">Password</label><input class="ipt" style="background:#171A2B;border-color:#3A3D57;color:#fff;" type="password" value="••••••••••" readonly /></div>
+        <button class="btn btn-primary a-admin" style="width:100%;padding:11px;">Sign In</button>
+        <p style="margin-top:14px;font-size:11px;color:#6E7189;">Protected by role-based access control · SSO available</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ A02 Dashboard ============ -->
+<div class="screen-page">
+  <div class="screen-label"><span class="sw" style="background:#4F3CC9"></span><span class="txt">Admin Panel · A02/14 · <b>Dashboard</b></span></div>
+  <div class="app-frame">
+    <div class="frame-bar"><span class="tld"></span><span class="tld"></span><span class="tld"></span><div class="frame-url">admin.bge100.io/dashboard</div></div>
+    <div class="frame-body">
+      <div class="admin-shell">
+        <div class="admin-sidebar">
+          <div class="admin-brand"><span class="mark">B</span><span class="name">BGE-100 Admin</span></div>
+          <div class="nav-label">Overview</div>
+          <div class="nav-item active"><span class="ic"></span>Dashboard</div>
+          <div class="nav-item"><span class="ic"></span>Assessments</div>
+          <div class="nav-item"><span class="ic"></span>Reports</div>
+          <div class="nav-label">Security</div>
+          <div class="nav-item"><span class="ic"></span>Roles &amp; Permissions</div>
+          <div class="nav-item"><span class="ic"></span>Users</div>
+          <div class="nav-label">System</div>
+          <div class="nav-item"><span class="ic"></span>Master Data</div>
+          <div class="nav-item"><span class="ic"></span>Audit Log</div>
+          <div class="sidebar-foot"><span class="av">PR</span><span class="who">Priya R.<span>Consultant</span></span></div>
+        </div>
+        <div class="admin-main">
+          <div class="admin-topbar"><div class="breadcrumb"><b>Dashboard</b></div><div class="topbar-right"><input class="search-box" placeholder="Search clients…" /><span class="topbar-av">PR</span></div></div>
+          <div class="admin-content">
+            <h3>Pipeline overview</h3>
+            <p class="hint">14 assessments in progress across the team</p>
+            <div class="stat-row">
+              <div class="stat-tile"><div class="lbl">Submitted, awaiting check</div><div class="val">4</div><div class="trend warn">Needs attention</div></div>
+              <div class="stat-tile"><div class="lbl">Under analysis</div><div class="val">6</div><div class="trend good">On track</div></div>
+              <div class="stat-tile"><div class="lbl">In QC review</div><div class="val">2</div><div class="trend good">On track</div></div>
+              <div class="stat-tile"><div class="lbl">Delivered this month</div><div class="val">11</div><div class="trend good">+3 vs last month</div></div>
+            </div>
+            <table class="dtable">
+              <tr><th>Client</th><th>Status</th><th>Consultant</th><th>Days in stage</th><th>Score</th></tr>
+              <tr><td>Sunrise Tea House</td><td><span class="pill-status accent">Under Analysis</span></td><td class="muted">Priya R.</td><td class="num">2</td><td class="muted">—</td></tr>
+              <tr><td>Golden Wok Kitchen</td><td><span class="pill-status warn">Submitted</span></td><td class="muted">Unassigned</td><td class="num">1</td><td class="muted">—</td></tr>
+              <tr><td>Blossom Bakery Co.</td><td><span class="pill-status info">QC Review</span></td><td class="muted">Marcus T.</td><td class="num">1</td><td class="num">74/100</td></tr>
+              <tr><td>Riverside Café</td><td><span class="pill-status good">Delivered</span></td><td class="muted">Priya R.</td><td class="num">—</td><td class="num">81/100</td></tr>
+              <tr><td>Night Owl Fast Food</td><td><span class="pill-status critical">Incomplete — returned</span></td><td class="muted">Unassigned</td><td class="num">4</td><td class="muted">—</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ A03 Assessment List ============ -->
+<div class="screen-page">
+  <div class="screen-label"><span class="sw" style="background:#4F3CC9"></span><span class="txt">Admin Panel · A03/14 · <b>Assessment List</b></span></div>
+  <div class="app-frame">
+    <div class="frame-bar"><span class="tld"></span><span class="tld"></span><span class="tld"></span><div class="frame-url">admin.bge100.io/assessments</div></div>
+    <div class="frame-body">
+      <div class="admin-shell">
+        <div class="admin-sidebar">
+          <div class="admin-brand"><span class="mark">B</span><span class="name">BGE-100 Admin</span></div>
+          <div class="nav-label">Overview</div>
+          <div class="nav-item"><span class="ic"></span>Dashboard</div>
+          <div class="nav-item active"><span class="ic"></span>Assessments</div>
+          <div class="nav-item"><span class="ic"></span>Reports</div>
+          <div class="nav-label">Security</div>
+          <div class="nav-item"><span class="ic"></span>Roles &amp; Permissions</div>
+          <div class="nav-item"><span class="ic"></span>Users</div>
+          <div class="nav-label">System</div>
+          <div class="nav-item"><span class="ic"></span>Master Data</div>
+          <div class="nav-item"><span class="ic"></span>Audit Log</div>
+          <div class="sidebar-foot"><span class="av">PR</span><span class="who">Priya R.<span>Consultant</span></span></div>
+        </div>
+        <div class="admin-main">
+          <div class="admin-topbar"><div class="breadcrumb"><b>All Assessments</b></div><div class="topbar-right"><input class="search-box" placeholder="Search…" /><span class="topbar-av">PR</span></div></div>
+          <div class="admin-content">
+            <div class="toolbar">
+              <span class="filter-chip active">All (14)</span>
+              <span class="filter-chip">Submitted (4)</span>
+              <span class="filter-chip">Under Analysis (6)</span>
+              <span class="filter-chip">QC (2)</span>
+              <span class="filter-chip">Delivered (11)</span>
+              <span class="spacer"></span>
+              <span class="filter-chip" style="background:#EDE8FB;border-color:#C9BBF2;color:#4F3CC9;">+ New Client</span>
+            </div>
+            <table class="dtable">
+              <tr><th>Client</th><th>Business Type</th><th>Purchased</th><th>Status</th><th>Assigned To</th><th></th></tr>
+              <tr><td>Sunrise Tea House</td><td class="muted">Tea Shop</td><td class="muted">2026-08-29</td><td><span class="pill-status accent">Under Analysis</span></td><td class="muted">Priya R.</td><td class="mono muted">Open →</td></tr>
+              <tr><td>Golden Wok Kitchen</td><td class="muted">Restaurant</td><td class="muted">2026-08-30</td><td><span class="pill-status warn">Submitted</span></td><td class="muted">Unassigned</td><td class="mono muted">Open →</td></tr>
+              <tr><td>Blossom Bakery Co.</td><td class="muted">Bakery</td><td class="muted">2026-08-24</td><td><span class="pill-status info">QC Review</span></td><td class="muted">Marcus T.</td><td class="mono muted">Open →</td></tr>
+              <tr><td>Riverside Café</td><td class="muted">Café</td><td class="muted">2026-08-18</td><td><span class="pill-status good">Delivered</span></td><td class="muted">Priya R.</td><td class="mono muted">Open →</td></tr>
+              <tr><td>Night Owl Fast Food</td><td class="muted">Fast Food</td><td class="muted">2026-08-26</td><td><span class="pill-status critical">Incomplete</span></td><td class="muted">Unassigned</td><td class="mono muted">Open →</td></tr>
+              <tr><td>Maple Leaf Desserts</td><td class="muted">Dessert Shop</td><td class="muted">2026-08-15</td><td><span class="pill-status good">Delivered</span></td><td class="muted">Marcus T.</td><td class="mono muted">Open →</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ A04 Completeness Check ============ -->
+<div class="screen-page">
+  <div class="screen-label"><span class="sw" style="background:#4F3CC9"></span><span class="txt">Admin Panel · A04/14 · <b>Completeness Check</b></span></div>
+  <div class="app-frame">
+    <div class="frame-bar"><span class="tld"></span><span class="tld"></span><span class="tld"></span><div class="frame-url">admin.bge100.io/assessments/golden-wok/completeness</div></div>
+    <div class="frame-body">
+      <div class="admin-shell">
+        <div class="admin-sidebar">
+          <div class="admin-brand"><span class="mark">B</span><span class="name">BGE-100 Admin</span></div>
+          <div class="nav-item"><span class="ic"></span>Dashboard</div>
+          <div class="nav-item active"><span class="ic"></span>Assessments</div>
+          <div class="nav-item"><span class="ic"></span>Reports</div>
+          <div class="nav-item"><span class="ic"></span>Roles &amp; Permissions</div>
+          <div class="nav-item"><span class="ic"></span>Users</div>
+          <div class="nav-item"><span class="ic"></span>Master Data</div>
+          <div class="nav-item"><span class="ic"></span>Audit Log</div>
+          <div class="sidebar-foot"><span class="av">PR</span><span class="who">Priya R.<span>Consultant</span></span></div>
+        </div>
+        <div class="admin-main">
+          <div class="admin-topbar"><div class="breadcrumb">Assessments / <b>Golden Wok Kitchen</b> / Completeness Check</div><div class="topbar-right"><span class="topbar-av">PR</span></div></div>
+          <div class="admin-content">
+            <h3>Completeness check — Golden Wok Kitchen</h3>
+            <p class="hint">Submitted 2026-08-30 · verify before this moves to analysis</p>
+            <div class="workspace-grid">
+              <div class="panel-card">
+                <h4>Section completeness</h4>
+                <div class="qc-item"><span class="box">✓</span>1. Business Overview — 12/12 answered</div>
+                <div class="qc-item"><span class="box">✓</span>2. Operations — 19/19 answered</div>
+                <div class="qc-item"><span class="box open">!</span>3. Customer Experience — 13/16 answered, 3 missing</div>
+                <div class="qc-item"><span class="box">✓</span>4. Staff &amp; HR — 21/21 answered</div>
+                <div class="qc-item"><span class="box open">!</span>5. Sales &amp; Marketing — "Top 5 best-selling products" left blank</div>
+                <div class="qc-item"><span class="box">✓</span>6–9. Remaining sections complete</div>
+              </div>
+              <div class="panel-card">
+                <h4>Action</h4>
+                <p style="font-size:12.5px;color:#5B5E6E;margin:0 0 14px;">2 gaps found. Assessment cannot move to analysis until resolved.</p>
+                <button class="btn btn-primary a-admin" style="width:100%;margin-bottom:8px;">Request missing info from client</button>
+                <button class="btn btn-outline" style="width:100%;">Mark complete anyway</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ A05 Scoring Workspace ============ -->
+<div class="screen-page">
+  <div class="screen-label"><span class="sw" style="background:#4F3CC9"></span><span class="txt">Admin Panel · A05/14 · <b>Scoring Workspace</b></span></div>
+  <div class="app-frame">
+    <div class="frame-bar"><span class="tld"></span><span class="tld"></span><span class="tld"></span><div class="frame-url">admin.bge100.io/assessments/sunrise-tea-house/workspace</div></div>
+    <div class="frame-body">
+      <div class="admin-shell">
+        <div class="admin-sidebar">
+          <div class="admin-brand"><span class="mark">B</span><span class="name">BGE-100 Admin</span></div>
+          <div class="nav-item"><span class="ic"></span>Dashboard</div>
+          <div class="nav-item active"><span class="ic"></span>Assessments</div>
+          <div class="nav-item"><span class="ic"></span>Reports</div>
+          <div class="nav-item"><span class="ic"></span>Roles &amp; Permissions</div>
+          <div class="nav-item"><span class="ic"></span>Users</div>
+          <div class="nav-item"><span class="ic"></span>Master Data</div>
+          <div class="nav-item"><span class="ic"></span>Audit Log</div>
+          <div class="sidebar-foot"><span class="av">PR</span><span class="who">Priya R.<span>Consultant</span></span></div>
+        </div>
+        <div class="admin-main">
+          <div class="admin-topbar"><div class="breadcrumb">Assessments / <b>Sunrise Tea House</b></div><div class="topbar-right"><span class="topbar-av">PR</span></div></div>
+          <div class="admin-content">
+            <div class="workspace-tabs"><span class="wtab active">Scoring</span><span class="wtab">Findings &amp; Root Cause</span><span class="wtab">Recommendations &amp; Impact</span><span class="wtab">Report Preview</span></div>
+            <div class="workspace-grid">
+              <div class="panel-card">
+                <h4>Section scores (0–10)</h4>
+                <div class="scorebar-row"><span>1. Business Overview (5%)</span><div class="track"><div class="fill g" style="width:80%"></div></div><span class="val">8</span></div>
+                <div class="scorebar-row"><span>2. Operations (20%)</span><div class="track"><div class="fill r" style="width:40%"></div></div><span class="val">4</span></div>
+                <div class="scorebar-row"><span>3. Customer Experience (15%)</span><div class="track"><div class="fill y" style="width:70%"></div></div><span class="val">7</span></div>
+                <div class="scorebar-row"><span>4. Staff &amp; HR (15%)</span><div class="track"><div class="fill r" style="width:40%"></div></div><span class="val">4</span></div>
+                <div class="scorebar-row"><span>5. Sales &amp; Marketing (15%)</span><div class="track"><div class="fill y" style="width:60%"></div></div><span class="val">6</span></div>
+                <div class="scorebar-row"><span>6. Financial (10%)</span><div class="track"><div class="fill y" style="width:60%"></div></div><span class="val">6</span></div>
+                <div class="scorebar-row"><span>7. Technology (10%)</span><div class="track"><div class="fill r" style="width:40%"></div></div><span class="val">4</span></div>
+                <div class="scorebar-row"><span>8. AI &amp; Automation (5%)</span><div class="track"><div class="fill y" style="width:60%"></div></div><span class="val">6</span></div>
+                <div class="scorebar-row"><span>9. Growth Readiness (5%)</span><div class="track"><div class="fill y" style="width:50%"></div></div><span class="val">5</span></div>
+              </div>
+              <div class="panel-card">
+                <h4>Computed result</h4>
+                <div class="score-hero"><div class="score-ring" style="--pct:68%;"><div class="inner">68</div></div><div class="score-meta"><div class="band" style="color:#B87B0B;">Fair</div><div class="sub">Auto-calculated · read-only</div></div></div>
+                <p style="font-size:11.5px;color:#8B8E9C;margin:0;">Score is computed server-side from section weights — this panel cannot be edited directly, only the section scores can.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ A06 Findings & Root Cause ============ -->
+<div class="screen-page">
+  <div class="screen-label"><span class="sw" style="background:#4F3CC9"></span><span class="txt">Admin Panel · A06/14 · <b>Findings &amp; Root Cause</b></span></div>
+  <div class="app-frame">
+    <div class="frame-bar"><span class="tld"></span><span class="tld"></span><span class="tld"></span><div class="frame-url">admin.bge100.io/assessments/sunrise-tea-house/workspace</div></div>
+    <div class="frame-body">
+      <div class="admin-shell">
+        <div class="admin-sidebar">
+          <div class="admin-brand"><span class="mark">B</span><span class="name">BGE-100 Admin</span></div>
+          <div class="nav-item"><span class="ic"></span>Dashboard</div>
+          <div class="nav-item active"><span class="ic"></span>Assessments</div>
+          <div class="nav-item"><span class="ic"></span>Reports</div>
+          <div class="nav-item"><span class="ic"></span>Roles &amp; Permissions</div>
+          <div class="nav-item"><span class="ic"></span>Users</div>
+          <div class="nav-item"><span class="ic"></span>Master Data</div>
+          <div class="nav-item"><span class="ic"></span>Audit Log</div>
+          <div class="sidebar-foot"><span class="av">PR</span><span class="who">Priya R.<span>Consultant</span></span></div>
+        </div>
+        <div class="admin-main">
+          <div class="admin-topbar"><div class="breadcrumb">Assessments / <b>Sunrise Tea House</b></div><div class="topbar-right"><span class="topbar-av">PR</span></div></div>
+          <div class="admin-content">
+            <div class="workspace-tabs"><span class="wtab">Scoring</span><span class="wtab active">Findings &amp; Root Cause</span><span class="wtab">Recommendations &amp; Impact</span><span class="wtab">Report Preview</span></div>
+            <div class="workspace-grid">
+              <div class="panel-card">
+                <h4>Strengths (top 5)</h4>
+                <ul class="plain">
+                  <li><b>Strong brand authenticity</b><span>Section 5 · customers cite word-of-mouth and Instagram discovery</span></li>
+                  <li><b>Healthy revenue growth</b><span>Section 6 · 12-month revenue trending upward</span></li>
+                </ul>
+              </div>
+              <div class="panel-card">
+                <h4>Critical problems &amp; root cause</h4>
+                <table class="dtable" style="border:none;">
+                  <tr><th>Problem</th><th>Root Cause</th><th>Impact</th></tr>
+                  <tr><td>40% of order mistakes traced to kitchen</td><td class="muted">No documented kitchen SOPs</td><td><span class="priority-pill critical">Critical</span></td></tr>
+                  <tr><td>Part-time staff leave within 8 months</td><td class="muted">No formal onboarding process</td><td><span class="priority-pill high">High</span></td></tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ A07 Recommendations & Impact ============ -->
+<div class="screen-page">
+  <div class="screen-label"><span class="sw" style="background:#4F3CC9"></span><span class="txt">Admin Panel · A07/14 · <b>Recommendations &amp; Impact Plan</b></span></div>
+  <div class="app-frame">
+    <div class="frame-bar"><span class="tld"></span><span class="tld"></span><span class="tld"></span><div class="frame-url">admin.bge100.io/assessments/sunrise-tea-house/workspace</div></div>
+    <div class="frame-body">
+      <div class="admin-shell">
+        <div class="admin-sidebar">
+          <div class="admin-brand"><span class="mark">B</span><span class="name">BGE-100 Admin</span></div>
+          <div class="nav-item"><span class="ic"></span>Dashboard</div>
+          <div class="nav-item active"><span class="ic"></span>Assessments</div>
+          <div class="nav-item"><span class="ic"></span>Reports</div>
+          <div class="nav-item"><span class="ic"></span>Roles &amp; Permissions</div>
+          <div class="nav-item"><span class="ic"></span>Users</div>
+          <div class="nav-item"><span class="ic"></span>Master Data</div>
+          <div class="nav-item"><span class="ic"></span>Audit Log</div>
+          <div class="sidebar-foot"><span class="av">PR</span><span class="who">Priya R.<span>Consultant</span></span></div>
+        </div>
+        <div class="admin-main">
+          <div class="admin-topbar"><div class="breadcrumb">Assessments / <b>Sunrise Tea House</b></div><div class="topbar-right"><span class="topbar-av">PR</span></div></div>
+          <div class="admin-content">
+            <div class="workspace-tabs"><span class="wtab">Scoring</span><span class="wtab">Findings &amp; Root Cause</span><span class="wtab active">Recommendations &amp; Impact</span><span class="wtab">Report Preview</span></div>
+            <table class="dtable" style="margin-bottom:16px;">
+              <tr><th>Priority</th><th>Recommendation</th><th>Expected Impact</th><th>Timeline</th></tr>
+              <tr><td><span class="priority-pill critical">Critical</span></td><td>Document kitchen &amp; cashier SOPs</td><td class="muted">High — order accuracy</td><td class="muted">0–30 days</td></tr>
+              <tr><td><span class="priority-pill high">High</span></td><td>Build a structured onboarding checklist</td><td class="muted">High — retention</td><td class="muted">30–60 days</td></tr>
+              <tr><td><span class="priority-pill medium">Medium</span></td><td>Launch a simple loyalty program</td><td class="muted">Medium — repeat visits</td><td class="muted">60–90 days</td></tr>
+            </table>
+            <div class="stat-row">
+              <div class="stat-tile"><div class="lbl">Est. time saved / month</div><div class="val">14h</div></div>
+              <div class="stat-tile"><div class="lbl">Est. cost reduction / yr</div><div class="val">NT$85k</div></div>
+              <div class="stat-tile"><div class="lbl">Est. revenue growth</div><div class="val">+6%</div></div>
+              <div class="stat-tile"><div class="lbl">Est. CX improvement</div><div class="val">+12%</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ A08 Report Builder ============ -->
+<div class="screen-page">
+  <div class="screen-label"><span class="sw" style="background:#4F3CC9"></span><span class="txt">Admin Panel · A08/14 · <b>Report Builder / Preview</b></span></div>
+  <div class="app-frame">
+    <div class="frame-bar"><span class="tld"></span><span class="tld"></span><span class="tld"></span><div class="frame-url">admin.bge100.io/assessments/sunrise-tea-house/report</div></div>
+    <div class="frame-body">
+      <div class="admin-shell">
+        <div class="admin-sidebar">
+          <div class="admin-brand"><span class="mark">B</span><span class="name">BGE-100 Admin</span></div>
+          <div class="nav-item"><span class="ic"></span>Dashboard</div>
+          <div class="nav-item active"><span class="ic"></span>Assessments</div>
+          <div class="nav-item"><span class="ic"></span>Reports</div>
+          <div class="nav-item"><span class="ic"></span>Roles &amp; Permissions</div>
+          <div class="nav-item"><span class="ic"></span>Users</div>
+          <div class="nav-item"><span class="ic"></span>Master Data</div>
+          <div class="nav-item"><span class="ic"></span>Audit Log</div>
+          <div class="sidebar-foot"><span class="av">PR</span><span class="who">Priya R.<span>Consultant</span></span></div>
+        </div>
+        <div class="admin-main">
+          <div class="admin-topbar"><div class="breadcrumb">Assessments / Sunrise Tea House / <b>Report Preview</b></div><div class="topbar-right"><button class="btn btn-primary a-admin">Send to QC</button></div></div>
+          <div class="admin-content">
+            <div class="panel-card" style="max-width:640px;">
+              <h4>Business Health Report — Draft v1</h4>
+              <div class="score-hero"><div class="score-ring" style="--pct:68%;"><div class="inner">68</div></div><div class="score-meta"><div class="band" style="color:#B87B0B;">Fair</div><div class="sub">9-area scorecard generated from Scoring tab</div></div></div>
+              <ul class="plain">
+                <li><b>Cover + Business Health Dashboard</b><span>Auto-populated</span></li>
+                <li><b>Executive Summary</b><span>Drafted — 3 paragraphs</span></li>
+                <li><b>9 section findings</b><span>Auto-populated from workspace</span></li>
+                <li><b>Root Cause Analysis + Priority Matrix</b><span>Auto-populated</span></li>
+                <li><b>90-Day Priority Action Plan</b><span>3 phases drafted</span></li>
+                <li><b class="empty-dash">Solution packages / pricing</b><span>Excluded — Phase 1 boundary</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ A09 QC Checklist ============ -->
+<div class="screen-page">
+  <div class="screen-label"><span class="sw" style="background:#4F3CC9"></span><span class="txt">Admin Panel · A09/14 · <b>QC Checklist</b></span></div>
+  <div class="app-frame">
+    <div class="frame-bar"><span class="tld"></span><span class="tld"></span><span class="tld"></span><div class="frame-url">admin.bge100.io/assessments/blossom-bakery/qc</div></div>
+    <div class="frame-body">
+      <div class="admin-shell">
+        <div class="admin-sidebar">
+          <div class="admin-brand"><span class="mark">B</span><span class="name">BGE-100 Admin</span></div>
+          <div class="nav-item"><span class="ic"></span>Dashboard</div>
+          <div class="nav-item active"><span class="ic"></span>Assessments</div>
+          <div class="nav-item"><span class="ic"></span>Reports</div>
+          <div class="nav-item"><span class="ic"></span>Roles &amp; Permissions</div>
+          <div class="nav-item"><span class="ic"></span>Users</div>
+          <div class="nav-item"><span class="ic"></span>Master Data</div>
+          <div class="nav-item"><span class="ic"></span>Audit Log</div>
+          <div class="sidebar-foot"><span class="av">MT</span><span class="who">Marcus T.<span>QC Reviewer</span></span></div>
+        </div>
+        <div class="admin-main">
+          <div class="admin-topbar"><div class="breadcrumb">Assessments / <b>Blossom Bakery Co.</b> / QC</div><div class="topbar-right"><span class="topbar-av">MT</span></div></div>
+          <div class="admin-content">
+            <h3>QC checklist — Blossom Bakery Co.</h3>
+            <p class="hint">Scored by Priya R. · submitted for review 2 hours ago</p>
+            <div class="workspace-grid">
+              <div class="panel-card">
+                <div class="qc-item"><span class="box">✓</span>All 9 sections scored</div>
+                <div class="qc-item"><span class="box">✓</span>Overall score matches weighted calculation</div>
+                <div class="qc-item"><span class="box">✓</span>Strengths supported by assessment evidence</div>
+                <div class="qc-item"><span class="box open">!</span>Root causes logically connect to problems</div>
+                <div class="qc-item"><span class="box">✓</span>No solution packages or pricing included</div>
+                <div class="qc-item"><span class="box">✓</span>No confidential consultant notes leaked to client view</div>
+              </div>
+              <div class="panel-card">
+                <h4>Decision</h4>
+                <div class="field wide" style="margin-bottom:12px;"><label>QC comment</label><textarea class="ipt" rows="3">Root cause for "declining repeat visits" needs to tie back to the loyalty-program finding in Section 6, not just restated as a symptom.</textarea></div>
+                <button class="btn btn-outline" style="width:100%;margin-bottom:8px;">Return to consultant</button>
+                <button class="btn btn-primary a-admin" style="width:100%;">Approve for delivery</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ A10 Delivery Control ============ -->
+<div class="screen-page">
+  <div class="screen-label"><span class="sw" style="background:#4F3CC9"></span><span class="txt">Admin Panel · A10/14 · <b>Delivery Control</b></span></div>
+  <div class="app-frame">
+    <div class="frame-bar"><span class="tld"></span><span class="tld"></span><span class="tld"></span><div class="frame-url">admin.bge100.io/assessments/blossom-bakery/delivery</div></div>
+    <div class="frame-body">
+      <div class="admin-shell">
+        <div class="admin-sidebar">
+          <div class="admin-brand"><span class="mark">B</span><span class="name">BGE-100 Admin</span></div>
+          <div class="nav-item"><span class="ic"></span>Dashboard</div>
+          <div class="nav-item active"><span class="ic"></span>Assessments</div>
+          <div class="nav-item"><span class="ic"></span>Reports</div>
+          <div class="nav-item"><span class="ic"></span>Roles &amp; Permissions</div>
+          <div class="nav-item"><span class="ic"></span>Users</div>
+          <div class="nav-item"><span class="ic"></span>Master Data</div>
+          <div class="nav-item"><span class="ic"></span>Audit Log</div>
+          <div class="sidebar-foot"><span class="av">OL</span><span class="who">Owen L.<span>Delivery Ops</span></span></div>
+        </div>
+        <div class="admin-main">
+          <div class="admin-topbar"><div class="breadcrumb">Assessments / <b>Blossom Bakery Co.</b> / Delivery</div><div class="topbar-right"><span class="topbar-av">OL</span></div></div>
+          <div class="admin-content">
+            <h3>Ready for delivery</h3>
+            <p class="hint">Approved by Marcus T. (QC) on 2026-09-01</p>
+            <div class="panel-card" style="max-width:600px;">
+              <ul class="plain" style="margin-bottom:16px;">
+                <li><b style="color:#1E9E6B;">✓ Report approved</b><span>Version 2 · 15 pages</span></li>
+                <li><b style="color:#1E9E6B;">✓ Client contact verified</b><span>owner@blossombakery.tw</span></li>
+                <li><b class="empty-dash">○ Delivery email not yet sent</b><span></span></li>
+              </ul>
+              <button class="btn btn-primary a-admin" style="width:100%;">Deliver Report to Client</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ A11 RBAC Roles ============ -->
+<div class="screen-page">
+  <div class="screen-label"><span class="sw" style="background:#4F3CC9"></span><span class="txt">Admin Panel · A11/14 · <b>RBAC — Roles &amp; Permissions</b></span></div>
+  <div class="app-frame">
+    <div class="frame-bar"><span class="tld"></span><span class="tld"></span><span class="tld"></span><div class="frame-url">admin.bge100.io/rbac/roles</div></div>
+    <div class="frame-body">
+      <div class="admin-shell">
+        <div class="admin-sidebar">
+          <div class="admin-brand"><span class="mark">B</span><span class="name">BGE-100 Admin</span></div>
+          <div class="nav-item"><span class="ic"></span>Dashboard</div>
+          <div class="nav-item"><span class="ic"></span>Assessments</div>
+          <div class="nav-item"><span class="ic"></span>Reports</div>
+          <div class="nav-item active"><span class="ic"></span>Roles &amp; Permissions</div>
+          <div class="nav-item"><span class="ic"></span>Users</div>
+          <div class="nav-item"><span class="ic"></span>Master Data</div>
+          <div class="nav-item"><span class="ic"></span>Audit Log</div>
+          <div class="sidebar-foot"><span class="av">SA</span><span class="who">Super Admin<span>Full access</span></span></div>
+        </div>
+        <div class="admin-main">
+          <div class="admin-topbar"><div class="breadcrumb"><b>Roles &amp; Permissions</b></div><div class="topbar-right"><button class="btn btn-primary a-admin">+ New Role</button></div></div>
+          <div class="admin-content">
+            <table class="rbac-grid">
+              <tr><th>Permission</th><th>SUPER_ADMIN</th><th>CONSULTANT</th><th>QC_REVIEWER</th><th>DELIVERY_OPS</th><th>VIEWER</th></tr>
+              <tr><td>View assessments</td><td class="chk">✓</td><td class="chk">✓</td><td class="chk">✓</td><td class="chk">✓</td><td class="chk">✓</td></tr>
+              <tr><td>Score sections</td><td class="chk">✓</td><td class="chk">✓</td><td class="no">—</td><td class="no">—</td><td class="no">—</td></tr>
+              <tr><td>Approve for delivery</td><td class="chk">✓</td><td class="no">—</td><td class="chk">✓</td><td class="no">—</td><td class="no">—</td></tr>
+              <tr><td>Trigger delivery</td><td class="chk">✓</td><td class="no">—</td><td class="no">—</td><td class="chk">✓</td><td class="no">—</td></tr>
+              <tr><td>Manage RBAC</td><td class="chk">✓</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td></tr>
+              <tr><td>Manage master data</td><td class="chk">✓</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td></tr>
+              <tr><td>View client PII</td><td class="chk">✓</td><td class="chk">✓</td><td class="chk">✓</td><td class="chk">✓</td><td class="no">—</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ A12 RBAC Users ============ -->
+<div class="screen-page">
+  <div class="screen-label"><span class="sw" style="background:#4F3CC9"></span><span class="txt">Admin Panel · A12/14 · <b>RBAC — Users</b></span></div>
+  <div class="app-frame">
+    <div class="frame-bar"><span class="tld"></span><span class="tld"></span><span class="tld"></span><div class="frame-url">admin.bge100.io/rbac/users</div></div>
+    <div class="frame-body">
+      <div class="admin-shell">
+        <div class="admin-sidebar">
+          <div class="admin-brand"><span class="mark">B</span><span class="name">BGE-100 Admin</span></div>
+          <div class="nav-item"><span class="ic"></span>Dashboard</div>
+          <div class="nav-item"><span class="ic"></span>Assessments</div>
+          <div class="nav-item"><span class="ic"></span>Reports</div>
+          <div class="nav-item"><span class="ic"></span>Roles &amp; Permissions</div>
+          <div class="nav-item active"><span class="ic"></span>Users</div>
+          <div class="nav-item"><span class="ic"></span>Master Data</div>
+          <div class="nav-item"><span class="ic"></span>Audit Log</div>
+          <div class="sidebar-foot"><span class="av">SA</span><span class="who">Super Admin<span>Full access</span></span></div>
+        </div>
+        <div class="admin-main">
+          <div class="admin-topbar"><div class="breadcrumb"><b>Users</b></div><div class="topbar-right"><button class="btn btn-primary a-admin">+ Invite User</button></div></div>
+          <div class="admin-content">
+            <table class="dtable">
+              <tr><th>Name</th><th>Email</th><th>Role</th><th>Status</th><th>Last Active</th></tr>
+              <tr><td>Priya R.</td><td class="muted mono">priya.consultant@bge100.io</td><td><span class="pill-status accent">CONSULTANT</span></td><td><span class="pill-status good">Active</span></td><td class="muted">2 min ago</td></tr>
+              <tr><td>Marcus T.</td><td class="muted mono">marcus.t@bge100.io</td><td><span class="pill-status info">QC_REVIEWER</span></td><td><span class="pill-status good">Active</span></td><td class="muted">1 hr ago</td></tr>
+              <tr><td>Owen L.</td><td class="muted mono">owen.l@bge100.io</td><td><span class="pill-status neutral">DELIVERY_OPS</span></td><td><span class="pill-status good">Active</span></td><td class="muted">3 hrs ago</td></tr>
+              <tr><td>Dana K.</td><td class="muted mono">dana.k@bge100.io</td><td><span class="pill-status neutral">VIEWER</span></td><td><span class="pill-status warn">Invited</span></td><td class="muted">—</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ A13 Master Data ============ -->
+<div class="screen-page">
+  <div class="screen-label"><span class="sw" style="background:#4F3CC9"></span><span class="txt">Admin Panel · A13/14 · <b>Master Data Management</b></span></div>
+  <div class="app-frame">
+    <div class="frame-bar"><span class="tld"></span><span class="tld"></span><span class="tld"></span><div class="frame-url">admin.bge100.io/master-data/business-types</div></div>
+    <div class="frame-body">
+      <div class="admin-shell">
+        <div class="admin-sidebar">
+          <div class="admin-brand"><span class="mark">B</span><span class="name">BGE-100 Admin</span></div>
+          <div class="nav-item"><span class="ic"></span>Dashboard</div>
+          <div class="nav-item"><span class="ic"></span>Assessments</div>
+          <div class="nav-item"><span class="ic"></span>Reports</div>
+          <div class="nav-item"><span class="ic"></span>Roles &amp; Permissions</div>
+          <div class="nav-item"><span class="ic"></span>Users</div>
+          <div class="nav-item active"><span class="ic"></span>Master Data</div>
+          <div class="nav-item"><span class="ic"></span>Audit Log</div>
+          <div class="sidebar-foot"><span class="av">SA</span><span class="who">Super Admin<span>Full access</span></span></div>
+        </div>
+        <div class="admin-main">
+          <div class="admin-topbar"><div class="breadcrumb">Master Data / <b>Business Types</b></div><div class="topbar-right"><button class="btn btn-primary a-admin">+ Add Value</button></div></div>
+          <div class="admin-content">
+            <div class="toolbar">
+              <span class="filter-chip active">Business Types</span>
+              <span class="filter-chip">Revenue Channels</span>
+              <span class="filter-chip">Staff Positions</span>
+              <span class="filter-chip">AI Tools Catalog</span>
+              <span class="filter-chip">+ 17 more…</span>
+            </div>
+            <table class="dtable">
+              <tr><th>Sort</th><th>Value</th><th>Code</th><th>Status</th><th></th></tr>
+              <tr><td class="mono muted">1</td><td>Restaurant</td><td class="mono muted">RESTAURANT</td><td><span class="pill-status good">Active</span></td><td class="mono muted">Edit</td></tr>
+              <tr><td class="mono muted">2</td><td>Café</td><td class="mono muted">CAFE</td><td><span class="pill-status good">Active</span></td><td class="mono muted">Edit</td></tr>
+              <tr><td class="mono muted">3</td><td>Tea Shop</td><td class="mono muted">TEA_SHOP</td><td><span class="pill-status good">Active</span></td><td class="mono muted">Edit</td></tr>
+              <tr><td class="mono muted">4</td><td>Bakery</td><td class="mono muted">BAKERY</td><td><span class="pill-status good">Active</span></td><td class="mono muted">Edit</td></tr>
+              <tr><td class="mono muted">8</td><td>Other</td><td class="mono muted">OTHER</td><td><span class="pill-status neutral">System — locked</span></td><td class="mono muted">—</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ A14 Audit Log ============ -->
+<div class="screen-page">
+  <div class="screen-label"><span class="sw" style="background:#4F3CC9"></span><span class="txt">Admin Panel · A14/14 · <b>Audit Log</b></span></div>
+  <div class="app-frame">
+    <div class="frame-bar"><span class="tld"></span><span class="tld"></span><span class="tld"></span><div class="frame-url">admin.bge100.io/audit-log</div></div>
+    <div class="frame-body">
+      <div class="admin-shell">
+        <div class="admin-sidebar">
+          <div class="admin-brand"><span class="mark">B</span><span class="name">BGE-100 Admin</span></div>
+          <div class="nav-item"><span class="ic"></span>Dashboard</div>
+          <div class="nav-item"><span class="ic"></span>Assessments</div>
+          <div class="nav-item"><span class="ic"></span>Reports</div>
+          <div class="nav-item"><span class="ic"></span>Roles &amp; Permissions</div>
+          <div class="nav-item"><span class="ic"></span>Users</div>
+          <div class="nav-item"><span class="ic"></span>Master Data</div>
+          <div class="nav-item active"><span class="ic"></span>Audit Log</div>
+          <div class="sidebar-foot"><span class="av">SA</span><span class="who">Super Admin<span>Full access</span></span></div>
+        </div>
+        <div class="admin-main">
+          <div class="admin-topbar"><div class="breadcrumb"><b>Audit Log</b></div><div class="topbar-right"><input class="search-box" placeholder="Filter by user, entity…" /></div></div>
+          <div class="admin-content">
+            <table class="dtable">
+              <tr><th>Timestamp</th><th>Actor</th><th>Action</th><th>Entity</th></tr>
+              <tr><td class="mono muted">2026-09-01 14:02</td><td>Marcus T.</td><td><span class="pill-status good">Approved</span></td><td class="muted">Report · Blossom Bakery Co. v2</td></tr>
+              <tr><td class="mono muted">2026-09-01 13:47</td><td>Priya R.</td><td><span class="pill-status info">Score edited</span></td><td class="muted">Section 2 — Operations, Sunrise Tea House</td></tr>
+              <tr><td class="mono muted">2026-08-31 09:15</td><td>Super Admin</td><td><span class="pill-status accent">Role granted</span></td><td class="muted">Dana K. → VIEWER</td></tr>
+              <tr><td class="mono muted">2026-08-30 09:05</td><td>Owen L.</td><td><span class="pill-status warn">Completeness override</span></td><td class="muted">Golden Wok Kitchen</td></tr>
+              <tr><td class="mono muted">2026-08-29 16:12</td><td>System</td><td><span class="pill-status neutral">Submitted</span></td><td class="muted">Sunrise Tea House assessment</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
